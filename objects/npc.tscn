@@ -54,6 +54,7 @@ metadata/_custom_type_script = "uid://copfdvdg88fsd"
 
 [node name="DialogueEvent" parent="InteractionObject" unique_id=2119764822 node_paths=PackedStringArray("event_chains") instance=ExtResource("3_kk602")]
 event_chains = [NodePath("Bird"), NodePath("Skelly")]
+enabled = false
 
 [node name="DialogueChoice" type="Node" parent="InteractionObject/DialogueEvent" unique_id=1047659947]
 script = ExtResource("7_i8udl")
