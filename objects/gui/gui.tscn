@@ -1,0 +1,237 @@
+[gd_scene format=3 uid="uid://co2s6fywuo2xr"]
+
+[ext_resource type="Script" uid="uid://bp2vl1u1tw4nr" path="res://objects/gui/gui.gd" id="1_d56pw"]
+[ext_resource type="Theme" uid="uid://b3lkgta8jritw" path="res://sprites/gui/default_ui_theme.tres" id="1_j55ma"]
+[ext_resource type="Texture2D" uid="uid://b656uki85ayjr" path="res://sprites/gui/heart.png" id="3_i46r0"]
+[ext_resource type="Texture2D" uid="uid://bnolni3i1dv83" path="res://sprites/gui/goldsymbol.png" id="4_ulshg"]
+[ext_resource type="FontFile" uid="uid://dybeth03pa2v" path="res://sprites/gui/fonts/FandaEgyptianTur.ttf" id="5_548o7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dklp6"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dklp6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_athy6"]
+atlas = ExtResource("3_i46r0")
+region = Rect2(0, 0, 15, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uv2lk"]
+atlas = ExtResource("3_i46r0")
+region = Rect2(15, 0, 15, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xjgce"]
+atlas = ExtResource("3_i46r0")
+region = Rect2(30, 0, 15, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4x4rs"]
+atlas = ExtResource("3_i46r0")
+region = Rect2(45, 0, 15, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pxy0w"]
+atlas = ExtResource("3_i46r0")
+region = Rect2(60, 0, 15, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f1hx4"]
+atlas = ExtResource("3_i46r0")
+region = Rect2(75, 0, 15, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cxm6f"]
+atlas = ExtResource("3_i46r0")
+region = Rect2(90, 0, 15, 15)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dklp6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_athy6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uv2lk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xjgce")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4x4rs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pxy0w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f1hx4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cxm6f")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 20.0
+}]
+
+[node name="Gui" type="CanvasLayer" unique_id=93544749]
+script = ExtResource("1_d56pw")
+
+[node name="Control" type="Control" parent="." unique_id=553448998]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 320.0
+offset_bottom = 180.0
+theme = ExtResource("1_j55ma")
+
+[node name="PanelContainer" type="PanelContainer" parent="Control" unique_id=1633465786]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 16.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dklp6")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/PanelContainer" unique_id=412143631]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/PanelContainer/MarginContainer" unique_id=1915876724]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
+[node name="Hearts" type="HBoxContainer" parent="Control/PanelContainer/MarginContainer/HBoxContainer" unique_id=1247004518]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/PanelContainer/MarginContainer/HBoxContainer/Hearts" unique_id=1646159729]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_dklp6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Control/PanelContainer/MarginContainer/HBoxContainer/Hearts/PanelContainer" unique_id=1738105878]
+sprite_frames = SubResource("SpriteFrames_dklp6")
+frame = 6
+frame_progress = 1.0
+centered = false
+
+[node name="PanelContainer2" type="PanelContainer" parent="Control/PanelContainer/MarginContainer/HBoxContainer/Hearts" unique_id=1341384001]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_dklp6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Control/PanelContainer/MarginContainer/HBoxContainer/Hearts/PanelContainer2" unique_id=1067410158]
+sprite_frames = SubResource("SpriteFrames_dklp6")
+frame = 6
+centered = false
+
+[node name="PanelContainer3" type="PanelContainer" parent="Control/PanelContainer/MarginContainer/HBoxContainer/Hearts" unique_id=1690571156]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_dklp6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Control/PanelContainer/MarginContainer/HBoxContainer/Hearts/PanelContainer3" unique_id=1819793226]
+sprite_frames = SubResource("SpriteFrames_dklp6")
+frame = 6
+centered = false
+
+[node name="PanelContainer4" type="PanelContainer" parent="Control/PanelContainer/MarginContainer/HBoxContainer/Hearts" unique_id=606009697]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_dklp6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Control/PanelContainer/MarginContainer/HBoxContainer/Hearts/PanelContainer4" unique_id=478848856]
+sprite_frames = SubResource("SpriteFrames_dklp6")
+frame = 6
+centered = false
+
+[node name="PanelContainer5" type="PanelContainer" parent="Control/PanelContainer/MarginContainer/HBoxContainer/Hearts" unique_id=1833990524]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_dklp6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Control/PanelContainer/MarginContainer/HBoxContainer/Hearts/PanelContainer5" unique_id=15186988]
+sprite_frames = SubResource("SpriteFrames_dklp6")
+frame = 6
+centered = false
+
+[node name="PanelContainer6" type="PanelContainer" parent="Control/PanelContainer/MarginContainer/HBoxContainer/Hearts" unique_id=1641685843]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_dklp6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Control/PanelContainer/MarginContainer/HBoxContainer/Hearts/PanelContainer6" unique_id=1140219797]
+sprite_frames = SubResource("SpriteFrames_dklp6")
+frame = 6
+centered = false
+
+[node name="PanelContainer7" type="PanelContainer" parent="Control/PanelContainer/MarginContainer/HBoxContainer/Hearts" unique_id=667655129]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_dklp6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Control/PanelContainer/MarginContainer/HBoxContainer/Hearts/PanelContainer7" unique_id=1356372826]
+sprite_frames = SubResource("SpriteFrames_dklp6")
+frame = 6
+centered = false
+
+[node name="PanelContainer8" type="PanelContainer" parent="Control/PanelContainer/MarginContainer/HBoxContainer/Hearts" unique_id=491084648]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_dklp6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Control/PanelContainer/MarginContainer/HBoxContainer/Hearts/PanelContainer8" unique_id=617590833]
+sprite_frames = SubResource("SpriteFrames_dklp6")
+frame = 6
+centered = false
+
+[node name="PanelContainer9" type="PanelContainer" parent="Control/PanelContainer/MarginContainer/HBoxContainer/Hearts" unique_id=295056727]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_dklp6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Control/PanelContainer/MarginContainer/HBoxContainer/Hearts/PanelContainer9" unique_id=1167854713]
+sprite_frames = SubResource("SpriteFrames_dklp6")
+frame = 6
+centered = false
+
+[node name="PanelContainer10" type="PanelContainer" parent="Control/PanelContainer/MarginContainer/HBoxContainer/Hearts" unique_id=1787486700]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_dklp6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Control/PanelContainer/MarginContainer/HBoxContainer/Hearts/PanelContainer10" unique_id=1247725356]
+sprite_frames = SubResource("SpriteFrames_dklp6")
+frame = 6
+centered = false
+
+[node name="GoldCounter" type="HBoxContainer" parent="Control/PanelContainer/MarginContainer/HBoxContainer" unique_id=827139105]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="TextureRect" type="TextureRect" parent="Control/PanelContainer/MarginContainer/HBoxContainer/GoldCounter" unique_id=242737030]
+layout_mode = 2
+texture = ExtResource("4_ulshg")
+expand_mode = 2
+stretch_mode = 3
+
+[node name="MultiplicationSign" type="RichTextLabel" parent="Control/PanelContainer/MarginContainer/HBoxContainer/GoldCounter" unique_id=1981584966]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("5_548o7")
+theme_override_fonts/bold_font = ExtResource("5_548o7")
+theme_override_fonts/bold_italics_font = ExtResource("5_548o7")
+theme_override_fonts/italics_font = ExtResource("5_548o7")
+theme_override_fonts/mono_font = ExtResource("5_548o7")
+text = "x"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/PanelContainer/MarginContainer/HBoxContainer/GoldCounter" unique_id=669802445]
+custom_minimum_size = Vector2(56, 0)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("5_548o7")
+theme_override_fonts/bold_font = ExtResource("5_548o7")
+theme_override_fonts/bold_italics_font = ExtResource("5_548o7")
+theme_override_fonts/italics_font = ExtResource("5_548o7")
+theme_override_fonts/mono_font = ExtResource("5_548o7")
+text = "9999999999"
+scroll_active = false

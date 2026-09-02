@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://b37a4278mfild"]
+
+[ext_resource type="Script" uid="uid://f7ahriryn3uc" path="res://objects/level objects/breakable_wall_marker.gd" id="1_28dt3"]
+[ext_resource type="Texture2D" uid="uid://u544vdawscem" path="res://sprites/effect/block_break_effect.png" id="2_qo60k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5hlog"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ua3o8"]
+size = Vector2(1, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6j0q3"]
+size = Vector2(14, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pcavf"]
+size = Vector2(1, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lrmc0"]
+size = Vector2(14, 1)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_1285w"]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2iobm"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+
+[node name="BreakableWallMarker" type="Area2D" unique_id=420679526]
+collision_layer = 128
+collision_mask = 17
+script = ExtResource("1_28dt3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=390800238]
+shape = SubResource("RectangleShape2D_5hlog")
+debug_color = Color(1, 0, 0, 0.121569)
+
+[node name="NeighborFinder" type="Area2D" parent="." unique_id=611459562]
+collision_mask = 128
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NeighborFinder" unique_id=752224309]
+position = Vector2(-9.5, 0)
+shape = SubResource("RectangleShape2D_ua3o8")
+debug_color = Color(0, 0.6, 0.701961, 0.121569)
+
+[node name="NeighborFinder2" type="Area2D" parent="." unique_id=2074555187]
+collision_mask = 128
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NeighborFinder2" unique_id=1616291710]
+position = Vector2(0, -9.5)
+shape = SubResource("RectangleShape2D_6j0q3")
+debug_color = Color(0, 0.6, 0.701961, 0.121569)
+
+[node name="NeighborFinder3" type="Area2D" parent="." unique_id=612306352]
+collision_mask = 128
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NeighborFinder3" unique_id=1759136926]
+position = Vector2(9.5, 0)
+shape = SubResource("RectangleShape2D_pcavf")
+debug_color = Color(0, 0.6, 0.701961, 0.121569)
+
+[node name="NeighborFinder4" type="Area2D" parent="." unique_id=1836054126]
+collision_mask = 128
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NeighborFinder4" unique_id=1388431662]
+position = Vector2(0, 9.5)
+shape = SubResource("RectangleShape2D_lrmc0")
+debug_color = Color(0, 0.6, 0.701961, 0.121569)
+
+[node name="BreakWaitTimer" type="Timer" parent="." unique_id=1763902177]
+wait_time = 0.1
+one_shot = true
+
+[node name="BlockBreakParticle" type="GPUParticles2D" parent="." unique_id=1745215759]
+material = SubResource("CanvasItemMaterial_1285w")
+emitting = false
+amount = 1
+texture = ExtResource("2_qo60k")
+lifetime = 0.2
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_2iobm")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_entered" from="NeighborFinder" to="." method="add_neighbor"]
+[connection signal="area_entered" from="NeighborFinder2" to="." method="add_neighbor"]
+[connection signal="area_entered" from="NeighborFinder3" to="." method="add_neighbor"]
+[connection signal="area_entered" from="NeighborFinder4" to="." method="add_neighbor"]

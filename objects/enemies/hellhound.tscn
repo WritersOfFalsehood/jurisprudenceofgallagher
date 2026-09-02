@@ -1,0 +1,152 @@
+[gd_scene format=3 uid="uid://djm7l7exvogb"]
+
+[ext_resource type="PackedScene" uid="uid://dvhb82f036aie" path="res://objects/enemy.tscn" id="1_two0q"]
+[ext_resource type="Script" uid="uid://fjsnk73igq0r" path="res://objects/enemies/hellhound.gd" id="2_skwji"]
+[ext_resource type="Texture2D" uid="uid://o6dofeqlv7j" path="res://sprites/enemies/hellhound/Hellhound Knockback.png" id="2_vmss6"]
+[ext_resource type="Texture2D" uid="uid://bns3ucdam0dwr" path="res://sprites/enemies/hellhound/Hellhound Run.png" id="3_7t061"]
+[ext_resource type="Script" uid="uid://dxahgpvbl2t0k" path="res://objects/loot.gd" id="3_ergxe"]
+[ext_resource type="PackedScene" uid="uid://hoepa0qumub1" path="res://objects/level objects/coin.tscn" id="4_auc3u"]
+[ext_resource type="Texture2D" uid="uid://bnm4dibjobll3" path="res://sprites/enemies/hellhound/Hellhound Walking.png" id="4_xh6ph"]
+
+[sub_resource type="Resource" id="Resource_7jlpp"]
+script = ExtResource("3_ergxe")
+item = ExtResource("4_auc3u")
+amount_min = 3
+amount_max = 4
+metadata/_custom_type_script = "uid://dxahgpvbl2t0k"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ujrtb"]
+size = Vector2(18, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u0g61"]
+size = Vector2(18, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xrf27"]
+size = Vector2(18, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6eo5v"]
+atlas = ExtResource("2_vmss6")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_akpdo"]
+atlas = ExtResource("3_7t061")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_62e0h"]
+atlas = ExtResource("3_7t061")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vxup5"]
+atlas = ExtResource("3_7t061")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dmotn"]
+atlas = ExtResource("3_7t061")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h7yt4"]
+atlas = ExtResource("4_xh6ph")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h38ts"]
+atlas = ExtResource("4_xh6ph")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dx747"]
+atlas = ExtResource("4_xh6ph")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m45xr"]
+atlas = ExtResource("4_xh6ph")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2if78"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6eo5v")
+}],
+"loop": 1,
+"name": &"knockback",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_akpdo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_62e0h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vxup5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dmotn")
+}],
+"loop": 1,
+"name": &"run",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h7yt4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h38ts")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dx747")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m45xr")
+}],
+"loop": 1,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[node name="Enemy" unique_id=1523605330 instance=ExtResource("1_two0q")]
+script = ExtResource("2_skwji")
+walk_speed = 20.0
+dash_speed = 50.0
+dash_range = 135.0
+alert_jump_speed = 75.0
+loot = Array[ExtResource("3_ergxe")]([SubResource("Resource_7jlpp")])
+max_hp = 30.0
+on_air_knockback_deceleration = 150.0
+on_ground_knockback_deceleration = 400.0
+can_move = true
+can_get_hit = true
+can_get_knockbacked = true
+can_hurt = true
+can_take_damage = true
+can_die = true
+can_get_stunned = true
+gravity = 700.0
+terminal_velocity = 350.0
+can_fall = true
+turn_on_edge = true
+
+[node name="CollisionShape2D" parent="." index="0" unique_id=661771851]
+shape = SubResource("RectangleShape2D_ujrtb")
+
+[node name="CollisionShape2D" parent="Hitbox" parent_id_path=PackedInt32Array(1872581655) index="0" unique_id=1463374738]
+shape = SubResource("RectangleShape2D_u0g61")
+
+[node name="Hurtbox" parent="." index="2" unique_id=678974875]
+damage = 8.0
+knockback_power = 100.0
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0" unique_id=695694356]
+shape = SubResource("RectangleShape2D_xrf27")
+
+[node name="CollisionShape2D" parent="EdgeDetectorLeft" parent_id_path=PackedInt32Array(2007776135) index="0" unique_id=744730673]
+position = Vector2(-10, 7)
+
+[node name="CollisionShape2D" parent="EdgeDetectorRight" parent_id_path=PackedInt32Array(1943091389) index="0" unique_id=1471962111]
+position = Vector2(10, 7)
+
+[node name="AnimatedSprite2D" parent="." index="5" unique_id=1896571713]
+position = Vector2(0, -10)
+sprite_frames = SubResource("SpriteFrames_2if78")
+animation = &"walk"

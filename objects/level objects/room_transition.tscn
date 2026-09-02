@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://c6w2s2murmoog"]
+
+[ext_resource type="Script" uid="uid://dyy2vm8y4hvk4" path="res://objects/level objects/room_transition.gd" id="1_jh031"]
+
+[node name="RoomTransition" type="Node2D" unique_id=1153984141]
+script = ExtResource("1_jh031")
+direction = 0

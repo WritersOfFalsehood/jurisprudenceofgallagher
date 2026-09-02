@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://cau1quwpjeayc"]
+
+[ext_resource type="Texture2D" uid="uid://deecmlcntsgfy" path="res://sprites/npcs/torn/torn.png" id="1_isjqs"]
+[ext_resource type="PackedScene" uid="uid://dyuldrks65nue" path="res://objects/interaction_object.tscn" id="2_2ranv"]
+[ext_resource type="PackedScene" uid="uid://blcot3skpv13i" path="res://objects/events/dialogue_event.tscn" id="3_kk602"]
+[ext_resource type="Texture2D" uid="uid://b66ih1pevrjwa" path="res://sprites/gui/portraits/torn/tornportrait.png" id="5_r2ppp"]
+[ext_resource type="PackedScene" uid="uid://dup880av3p64b" path="res://objects/events/spawn_event.tscn" id="6_0vqe2"]
+[ext_resource type="PackedScene" uid="uid://baqf1wkerp55d" path="res://objects/enemies/hellbird.tscn" id="7_gpyjx"]
+[ext_resource type="Script" uid="uid://dxcb0t4gqqswn" path="res://objects/dialogue_choice.gd" id="7_i8udl"]
+[ext_resource type="PackedScene" uid="uid://dduxrrtmc811" path="res://objects/enemies/skeleton.tscn" id="8_wjwlh"]
+[ext_resource type="Script" uid="uid://copfdvdg88fsd" path="res://objects/dialogue_text.gd" id="9_xwtjt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bkej2"]
+size = Vector2(11, 27)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_001dt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_isjqs")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q1yhv"]
+radius = 22.0227
+
+[node name="Npc" type="CharacterBody2D" unique_id=418390124]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1121962162]
+position = Vector2(-0.5, 1.5)
+shape = SubResource("RectangleShape2D_bkej2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=882592703]
+sprite_frames = SubResource("SpriteFrames_001dt")
+
+[node name="InteractionObject" parent="." unique_id=363097906 instance=ExtResource("2_2ranv")]
+interaction_mode = 1
+interact_sign_height = 30.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionObject" unique_id=1210385729]
+shape = SubResource("CircleShape2D_q1yhv")
+
+[node name="DialogueEvent2" parent="InteractionObject" unique_id=1539801464 instance=ExtResource("3_kk602")]
+
+[node name="DialogueText" type="Node" parent="InteractionObject/DialogueEvent2" unique_id=262924755]
+script = ExtResource("9_xwtjt")
+character_name = "[color=orange]TORN:[/color]"
+portrait = ExtResource("5_r2ppp")
+character_text = "yollardayım ben, ben gidiyorum yolun kenarına kocaman oraya çorba yazmış, HAYVAN GİBİ toteme çorba yazmış. içeri giriyorum ne çorbası var diyorum? [wave]mErCiMeK[/wave]. ananı sikiyim hayallerimle oynadın orrrrospu çocuğu. ayak lazım PAÇA LAZIM İŞKEMBE LAZIM. MERCİMEK NE AVRADINI SİKTİĞİM madem yok NEDEN ORAYA KOCAMAN çorba yazıyon orrospu çocuğu. ÇORBA. "
+metadata/_custom_type_script = "uid://copfdvdg88fsd"
+
+[node name="DialogueEvent" parent="InteractionObject" unique_id=2119764822 node_paths=PackedStringArray("event_chains") instance=ExtResource("3_kk602")]
+event_chains = [NodePath("Bird"), NodePath("Skelly")]
+
+[node name="DialogueChoice" type="Node" parent="InteractionObject/DialogueEvent" unique_id=1047659947]
+script = ExtResource("7_i8udl")
+selections = PackedStringArray("Ateş Kuşu", "İskelet", "Hiçbiri")
+character_name = "[color=orange]TORN:[/color]"
+portrait = ExtResource("5_r2ppp")
+character_text = "Hangi düşmanı çağırmak istersin?"
+
+[node name="Bird" parent="InteractionObject/DialogueEvent" unique_id=1801295816 instance=ExtResource("2_2ranv")]
+interaction_mode = 3
+
+[node name="Event" parent="InteractionObject/DialogueEvent/Bird" unique_id=1951862716 instance=ExtResource("6_0vqe2")]
+object = ExtResource("7_gpyjx")
+spawn_position = Vector2(250, -50)
+
+[node name="Skelly" parent="InteractionObject/DialogueEvent" unique_id=1073095751 instance=ExtResource("2_2ranv")]
+interaction_mode = 3
+
+[node name="Event" parent="InteractionObject/DialogueEvent/Skelly" unique_id=1258707724 instance=ExtResource("6_0vqe2")]
+object = ExtResource("8_wjwlh")
+spawn_position = Vector2(250, -50)

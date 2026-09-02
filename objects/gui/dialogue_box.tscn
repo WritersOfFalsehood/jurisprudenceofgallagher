@@ -1,0 +1,129 @@
+[gd_scene format=3 uid="uid://bs4xm68kwapog"]
+
+[ext_resource type="Theme" uid="uid://b3lkgta8jritw" path="res://sprites/gui/default_ui_theme.tres" id="1_71qdd"]
+[ext_resource type="Script" uid="uid://beevlwjjnwave" path="res://objects/gui/dialogue_box.gd" id="1_tdtit"]
+[ext_resource type="Texture2D" uid="uid://d1lqrkn47hr8x" path="res://sprites/gui/nextarrow.png" id="3_1ja26"]
+[ext_resource type="Texture2D" uid="uid://bjjk4w3kitaye" path="res://sprites/gui/portraits/gallagher/Gallagher Portrait.png" id="4_t04k6"]
+[ext_resource type="PackedScene" uid="uid://cam1wktbk6xw7" path="res://objects/gui/choice_box_selection.tscn" id="4_xkgvi"]
+
+[sub_resource type="Gradient" id="Gradient_h4dlm"]
+offsets = PackedFloat32Array(0, 0.00666666, 0.0133333, 0.993333, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0.466667, 0.466667, 0.466667, 0, 0.392157, 0.392157, 0.392157, 0, 0.968627, 0.968627, 0.968627, 0, 1, 1, 1, 1)
+metadata/_snap_count = 9
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_glrjl"]
+gradient = SubResource("Gradient_h4dlm")
+fill_to = Vector2(0, 0)
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_3yn20"]
+frames = 2
+frame_0/texture = ExtResource("3_1ja26")
+frame_1/texture = SubResource("GradientTexture2D_glrjl")
+frame_1/duration = 1.0
+
+[node name="DialogueBox" type="CanvasLayer" unique_id=894017950]
+layer = 2
+script = ExtResource("1_tdtit")
+choice_box_selection = ExtResource("4_xkgvi")
+
+[node name="Control" type="Control" parent="." unique_id=1569784724]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 320.0
+offset_bottom = 180.0
+theme = ExtResource("1_71qdd")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control" unique_id=1751631375]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer" unique_id=1871050012]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Panel" type="Panel" parent="Control/MarginContainer/VBoxContainer" unique_id=1839344643]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+theme = ExtResource("1_71qdd")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/MarginContainer/VBoxContainer/Panel" unique_id=1175824783]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/Panel/MarginContainer" unique_id=1438781430]
+layout_mode = 2
+
+[node name="Portrait" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/Panel/MarginContainer/HBoxContainer" unique_id=183029807]
+custom_minimum_size = Vector2(46, 46)
+layout_mode = 2
+texture = ExtResource("4_t04k6")
+expand_mode = 1
+stretch_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/Panel/MarginContainer/HBoxContainer" unique_id=90279102]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="CharacterText" type="RichTextLabel" parent="Control/MarginContainer/VBoxContainer/Panel/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1283878781]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+bbcode_enabled = true
+text = "SAMPLE NAME"
+
+[node name="BodyText" type="RichTextLabel" parent="Control/MarginContainer/VBoxContainer/Panel/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1474425314]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "Sample body text"
+scroll_active = false
+scroll_following_visible_characters = true
+shortcut_keys_enabled = false
+justification_flags = 0
+visible_characters_behavior = 1
+
+[node name="NextArrow" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/Panel/MarginContainer/HBoxContainer" unique_id=1697519465]
+custom_minimum_size = Vector2(11, 9)
+custom_maximum_size = Vector2(11, 9)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+texture = SubResource("AnimatedTexture_3yn20")
+expand_mode = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/MarginContainer/VBoxContainer" unique_id=34141735]
+custom_maximum_size = Vector2(128, 280)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/MarginContainer/VBoxContainer/PanelContainer" unique_id=1097173032]
+layout_mode = 2
+theme_override_constants/margin_right = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/PanelContainer/MarginContainer" unique_id=2069220136]
+layout_mode = 2
+
+[node name="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=563676274 instance=ExtResource("4_xkgvi")]
+layout_mode = 2
+
+[node name="RichTextLabel" parent="Control/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" index="1"]
+text = "Sample choice"
+
+[node name="LetterTickTimer" type="Timer" parent="." unique_id=500396605]
+one_shot = true
+
+[connection signal="timeout" from="LetterTickTimer" to="." method="letter_tick"]
+
+[editable path="Control/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]

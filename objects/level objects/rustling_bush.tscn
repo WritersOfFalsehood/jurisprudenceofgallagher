@@ -1,0 +1,143 @@
+[gd_scene format=3 uid="uid://bud8hh3yhl0tg"]
+
+[ext_resource type="Script" uid="uid://cg0tqur06tenk" path="res://objects/level objects/rustling_bush.gd" id="1_sp22y"]
+[ext_resource type="PackedScene" uid="uid://bimd5km1lnidg" path="res://objects/enemies/wolf.tscn" id="2_xeddr"]
+[ext_resource type="Texture2D" uid="uid://br7t7bm13x3st" path="res://sprites/enemies/rustlingbush/Rustling Bush.png" id="3_wxenl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v6v7t"]
+atlas = ExtResource("3_wxenl")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sp22y"]
+atlas = ExtResource("3_wxenl")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xeddr"]
+atlas = ExtResource("3_wxenl")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wxenl"]
+atlas = ExtResource("3_wxenl")
+region = Rect2(128, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ru7s"]
+atlas = ExtResource("3_wxenl")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_et6os"]
+atlas = ExtResource("3_wxenl")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6i5rk"]
+atlas = ExtResource("3_wxenl")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nj8gt"]
+atlas = ExtResource("3_wxenl")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4lomn"]
+atlas = ExtResource("3_wxenl")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qc2xf"]
+atlas = ExtResource("3_wxenl")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q3j8b"]
+atlas = ExtResource("3_wxenl")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y4j0c"]
+atlas = ExtResource("3_wxenl")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k2qby"]
+atlas = ExtResource("3_wxenl")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_watq6"]
+atlas = ExtResource("3_wxenl")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dklp6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v6v7t")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sp22y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xeddr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wxenl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ru7s")
+}],
+"loop": 0,
+"name": &"jump",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_et6os")
+}],
+"loop": 1,
+"name": &"look",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6i5rk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nj8gt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4lomn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qc2xf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q3j8b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y4j0c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k2qby")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_watq6")
+}],
+"loop": 0,
+"name": &"rustle",
+"speed": 10.0
+}]
+
+[node name="RustlingBush" type="Node2D" unique_id=579675929]
+script = ExtResource("1_sp22y")
+hiding_object = ExtResource("2_xeddr")
+look_range = 160.0
+jump_range = 100.0
+jump_speed = 200.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1770969059]
+sprite_frames = SubResource("SpriteFrames_dklp6")
+animation = &"look"
+centered = false
+
+[node name="SpawnPoint" type="Node2D" parent="." unique_id=1717307289]
+position = Vector2(8, 2)
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://bk6i2qky3q74f"]
+
+[ext_resource type="Texture2D" uid="uid://di17v2uobnjmq" path="res://sprites/objects/campfire.png" id="1_0slf3"]
+[ext_resource type="PackedScene" uid="uid://dyuldrks65nue" path="res://objects/interaction_object.tscn" id="2_mtqhr"]
+[ext_resource type="PackedScene" uid="uid://dl575tedt8gae" path="res://objects/events/move_player_event.tscn" id="3_mw4kw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_voo6m"]
+atlas = ExtResource("1_0slf3")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5wyyg"]
+atlas = ExtResource("1_0slf3")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nr4t1"]
+atlas = ExtResource("1_0slf3")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0sjgt"]
+atlas = ExtResource("1_0slf3")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ynupw"]
+atlas = ExtResource("1_0slf3")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ucr3v"]
+atlas = ExtResource("1_0slf3")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dklp6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_voo6m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5wyyg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nr4t1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0sjgt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ynupw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ucr3v")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fodb4"]
+radius = 18.027756
+
+[node name="Campfire" type="Node2D" unique_id=1268968916]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=45787849]
+position = Vector2(0, -32)
+sprite_frames = SubResource("SpriteFrames_dklp6")
+autoplay = "default"
+frame_progress = 0.95878047
+
+[node name="InteractionObject" parent="." unique_id=654532598 instance=ExtResource("2_mtqhr")]
+interaction_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionObject" unique_id=2065558022]
+shape = SubResource("CircleShape2D_fodb4")
+
+[node name="MovePlayer" parent="InteractionObject" unique_id=1894525989 instance=ExtResource("3_mw4kw")]
+stop_point = Vector2(-16, 0)
+speed = 100.0

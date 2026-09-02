@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cyhvy5yu6jfbp"]
+
+[ext_resource type="Script" uid="uid://drglrw3yxa6a3" path="res://objects/particle_pool.gd" id="1_gv0hp"]
+
+[node name="ParticlePool" type="Node2D" unique_id=1792388289]
+script = ExtResource("1_gv0hp")

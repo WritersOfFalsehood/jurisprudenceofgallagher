@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://dyuldrks65nue"]
+
+[ext_resource type="Script" uid="uid://cy5pcdnk2aobb" path="res://objects/interaction_object.gd" id="1_bop76"]
+[ext_resource type="Texture2D" uid="uid://qn66cdbh21pc" path="res://sprites/gui/interact.png" id="2_cjlqk"]
+
+[node name="InteractionObject" type="Area2D" unique_id=1022857465]
+collision_layer = 256
+script = ExtResource("1_bop76")
+show_interact_sign = true
+interact_sign_height = 24.0
+
+[node name="InteractSign" type="Sprite2D" parent="." unique_id=1811157328]
+visible = false
+texture = ExtResource("2_cjlqk")
+
+[connection signal="area_entered" from="." to="." method="add_this_interaction"]
+[connection signal="area_exited" from="." to="." method="remove_this_interaction"]

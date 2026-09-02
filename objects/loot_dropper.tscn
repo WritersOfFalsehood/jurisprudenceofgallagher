@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://biniofya6w1hd"]
+
+[ext_resource type="Script" uid="uid://dmyvjm8vgxjws" path="res://objects/loot_dropper.gd" id="1_pc75k"]
+
+[node name="LootDropper" type="Node2D" unique_id=52606465]
+script = ExtResource("1_pc75k")
+
+[node name="LootDropTimer" type="Timer" parent="." unique_id=969852975]
+wait_time = 0.05
+one_shot = true

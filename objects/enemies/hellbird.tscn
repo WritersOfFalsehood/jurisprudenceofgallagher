@@ -1,0 +1,139 @@
+[gd_scene load_steps=16 format=3 uid="uid://baqf1wkerp55d"]
+
+[ext_resource type="PackedScene" uid="uid://dvhb82f036aie" path="res://objects/enemy.tscn" id="1_eeog3"]
+[ext_resource type="Script" path="res://objects/enemies/hellbird.gd" id="2_tdvpt"]
+[ext_resource type="PackedScene" uid="uid://c4cdqykgmk72e" path="res://objects/enemies/projectiles/small_fireball.tscn" id="3_3av2f"]
+[ext_resource type="Texture2D" uid="uid://c3k25svre8qi0" path="res://sprites/enemies/hellbird.png" id="4_ypwqy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tvf7e"]
+size = Vector2(12, 9)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_upu6w"]
+size = Vector2(12, 9)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iwusp"]
+size = Vector2(12, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ob5jr"]
+atlas = ExtResource("4_ypwqy")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_42yyn"]
+atlas = ExtResource("4_ypwqy")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4vgbe"]
+atlas = ExtResource("4_ypwqy")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b4bdn"]
+atlas = ExtResource("4_ypwqy")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d7prq"]
+atlas = ExtResource("4_ypwqy")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jdorq"]
+atlas = ExtResource("4_ypwqy")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bf3sc"]
+atlas = ExtResource("4_ypwqy")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_juwvk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ob5jr")
+}],
+"loop": true,
+"name": &"dive",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_42yyn")
+}],
+"loop": true,
+"name": &"fireball ready",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4vgbe")
+}],
+"loop": true,
+"name": &"fireball shoot",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b4bdn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d7prq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jdorq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bf3sc")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 8.0
+}]
+
+[node name="Enemy" instance=ExtResource("1_eeog3")]
+collision_layer = 66
+script = ExtResource("2_tdvpt")
+projectile = ExtResource("3_3av2f")
+movement_behaviour = 0
+wander_speed = 40.0
+follow_speed = 50.0
+engage_range = 240.0
+disengage_range = 280.0
+attack_range = 180.0
+fireball_speed = 120.0
+flapping_amplitude = 5.0
+flapping_frequency = 1.0
+diving_initial_vertical_speed = 150.0
+diving_upward_acceleration = 150.0
+diving_horizontal_speed = 75.0
+max_hp = 40.0
+can_move = true
+can_get_hit = true
+can_hurt = true
+can_take_damage = true
+can_die = true
+can_get_stunned = true
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_tvf7e")
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_upu6w")
+
+[node name="Hurtbox" parent="." index="2"]
+damage = 8.0
+knockback_power = 100.0
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_iwusp")
+
+[node name="AnimatedSprite2D" parent="." index="5"]
+position = Vector2(0, 4.76837e-07)
+sprite_frames = SubResource("SpriteFrames_juwvk")
+animation = &"fly"
+
+[node name="AIStateTimer" type="Timer" parent="." index="8"]
+one_shot = true
+
+[node name="AttackCooldownTimer" type="Timer" parent="." index="9"]
+wait_time = 1.5
+one_shot = true
