@@ -1,0 +1,256 @@
+[gd_scene format=3 uid="uid://13hsnihbrg14"]
+
+[ext_resource type="Script" uid="uid://cmppxywehhc2n" path="res://objects/player.gd" id="1_g38wg"]
+[ext_resource type="SpriteFrames" uid="uid://c2037a1g8pih4" path="res://sprites/gallagher/gallagher.tres" id="2_4q6fy"]
+[ext_resource type="Script" uid="uid://0iyu84ui5g1t" path="res://objects/ledge_detector.gd" id="6_3rerk"]
+[ext_resource type="PackedScene" uid="uid://cyhvy5yu6jfbp" path="res://objects/particle_pool.tscn" id="7_3rfka"]
+[ext_resource type="Script" uid="uid://dvmywhw2nc034" path="res://scripts/player_sprite.gd" id="7_67bqj"]
+[ext_resource type="Texture2D" uid="uid://dy8ycg0ioqd62" path="res://sprites/effect/dash.png" id="7_i825w"]
+[ext_resource type="Texture2D" uid="uid://bedwdguoq633d" path="res://sprites/effect/land.png" id="9_4vq5b"]
+[ext_resource type="Script" uid="uid://bh42d7gj4madr" path="res://scripts/player_attack_handler.gd" id="9_p8t3q"]
+[ext_resource type="Texture2D" uid="uid://c7vdbp5ytbous" path="res://sprites/effect/landsmall.png" id="10_3nfmf"]
+[ext_resource type="PackedScene" uid="uid://cl8knsebwm6wp" path="res://components/hurtbox.tscn" id="10_m6mav"]
+[ext_resource type="Texture2D" uid="uid://d018iouswolox" path="res://sprites/effect/slide.png" id="11_3nfmf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ousma"]
+size = Vector2(8, 23)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3nhpk"]
+size = Vector2(10, 25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k0q78"]
+size = Vector2(32, 31)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a6h1l"]
+size = Vector2(24, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f816r"]
+size = Vector2(28, 35)
+
+[sub_resource type="Curve" id="Curve_teojw"]
+_data = [Vector2(0, 1), 0.0, -1.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_wlmlh"]
+curve = SubResource("Curve_teojw")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ni17m"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+alpha_curve = SubResource("CurveTexture_wlmlh")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_p8jiu"]
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 5
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_i825w"]
+particle_flag_disable_z = true
+particle_flag_inherit_emitter_scale = true
+gravity = Vector3(0, 0, 0)
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_fodb4"]
+particles_animation = true
+particles_anim_h_frames = 5
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0minr"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_uek14"]
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[node name="Player" type="CharacterBody2D" unique_id=1386901478]
+z_index = 10
+collision_mask = 1028
+script = ExtResource("1_g38wg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=68277070]
+position = Vector2(0, -11.5)
+shape = SubResource("RectangleShape2D_ousma")
+
+[node name="PlayerSprite" type="AnimatedSprite2D" parent="." unique_id=857829229]
+position = Vector2(0, -14)
+sprite_frames = ExtResource("2_4q6fy")
+animation = &"dash jump"
+frame = 5
+frame_progress = 1.0
+script = ExtResource("7_67bqj")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=376764610]
+collision_mask = 810
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=331737964]
+position = Vector2(0, -11.5)
+shape = SubResource("RectangleShape2D_3nhpk")
+debug_color = Color(0.623529, 0.596078, 0, 0.12549)
+
+[node name="PlayerAttackHandler" type="Node2D" parent="." unique_id=1817739532]
+script = ExtResource("9_p8t3q")
+
+[node name="SideAttack" parent="PlayerAttackHandler" unique_id=10570096 node_paths=PackedStringArray("collision_shape") instance=ExtResource("10_m6mav")]
+collision_layer = 16
+collision_mask = 34
+damage = 15.0
+knockback_power = 100.0
+parryable = true
+collision_shape = NodePath("CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerAttackHandler/SideAttack" unique_id=1706864002]
+position = Vector2(16, -11.5)
+shape = SubResource("RectangleShape2D_k0q78")
+debug_color = Color(0.921569, 0, 0, 0.12549)
+
+[node name="UpAttack" parent="PlayerAttackHandler" unique_id=1333698146 node_paths=PackedStringArray("collision_shape") instance=ExtResource("10_m6mav")]
+collision_layer = 16
+collision_mask = 34
+damage = 15.0
+knockback_power = 100.0
+direction = 1
+parryable = true
+collision_shape = NodePath("CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerAttackHandler/UpAttack" unique_id=874364864]
+position = Vector2(0, -24)
+shape = SubResource("RectangleShape2D_a6h1l")
+debug_color = Color(0.921569, 0, 0, 0.12549)
+
+[node name="DownAttack" parent="PlayerAttackHandler" unique_id=1919489461 node_paths=PackedStringArray("collision_shape") instance=ExtResource("10_m6mav")]
+collision_layer = 16
+collision_mask = 34
+damage = 15.0
+knockback_power = 100.0
+direction = 3
+parryable = true
+collision_shape = NodePath("CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerAttackHandler/DownAttack" unique_id=1374983515]
+position = Vector2(0, 5.5)
+shape = SubResource("RectangleShape2D_f816r")
+debug_color = Color(0.921569, 0, 0, 0.12549)
+
+[node name="AttackTimer" type="Timer" parent="." unique_id=2024933177]
+one_shot = true
+
+[node name="AttackComboTimer" type="Timer" parent="." unique_id=994842879]
+one_shot = true
+
+[node name="InvisibilityFramesTimer" type="Timer" parent="." unique_id=271936943]
+wait_time = 1.5
+one_shot = true
+
+[node name="DashTimer" type="Timer" parent="." unique_id=1668301288]
+wait_time = 0.5
+one_shot = true
+
+[node name="DashJumpTimer" type="Timer" parent="." unique_id=1489966050]
+wait_time = 0.1
+one_shot = true
+
+[node name="LedgeGrabTimer" type="Timer" parent="." unique_id=807542799]
+wait_time = 0.5
+one_shot = true
+
+[node name="SlashEffect" type="GPUParticles2D" parent="." unique_id=507439005]
+emitting = false
+amount = 4
+lifetime = 0.3
+process_material = SubResource("ParticleProcessMaterial_ni17m")
+
+[node name="LedgeDetector" type="Node2D" parent="." unique_id=688025617]
+script = ExtResource("6_3rerk")
+
+[node name="UpperRaycast" type="RayCast2D" parent="LedgeDetector" unique_id=1175027386]
+position = Vector2(0, -20)
+target_position = Vector2(8, 0)
+collision_mask = 4
+hit_from_inside = true
+
+[node name="MiddleRaycast" type="RayCast2D" parent="LedgeDetector" unique_id=1546260991]
+position = Vector2(0, -16.1)
+target_position = Vector2(8, 0)
+collision_mask = 4
+hit_from_inside = true
+
+[node name="LowerRaycast" type="RayCast2D" parent="LedgeDetector" unique_id=89850152]
+target_position = Vector2(8, 0)
+collision_mask = 4
+hit_from_inside = true
+
+[node name="GapCheckerRaycast" type="RayCast2D" parent="LedgeDetector" unique_id=7049223]
+position = Vector2(0, -37)
+target_position = Vector2(16, 0)
+collision_mask = 4
+hit_from_inside = true
+
+[node name="DashParticlePool" parent="." unique_id=1792388289 instance=ExtResource("7_3rfka")]
+pool_size = 4
+
+[node name="DashParticle" type="GPUParticles2D" parent="DashParticlePool" unique_id=503432920]
+material = SubResource("CanvasItemMaterial_p8jiu")
+emitting = false
+amount = 1
+texture = ExtResource("7_i825w")
+lifetime = 0.5
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_i825w")
+
+[node name="LandParticlePool" parent="." unique_id=1690136238 instance=ExtResource("7_3rfka")]
+pool_size = 4
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="LandParticlePool" unique_id=1138700112]
+material = SubResource("CanvasItemMaterial_fodb4")
+emitting = false
+amount = 1
+texture = ExtResource("9_4vq5b")
+lifetime = 0.4
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_0minr")
+
+[node name="LandSmallParticlePool" parent="." unique_id=575220983 instance=ExtResource("7_3rfka")]
+pool_size = 4
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="LandSmallParticlePool" unique_id=1452787211]
+material = SubResource("CanvasItemMaterial_uek14")
+emitting = false
+amount = 1
+texture = ExtResource("10_3nfmf")
+lifetime = 0.2
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_0minr")
+
+[node name="SlideParticlePool" parent="." unique_id=866085787 instance=ExtResource("7_3rfka")]
+pool_size = 4
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="SlideParticlePool" unique_id=1322944869]
+material = SubResource("CanvasItemMaterial_uek14")
+emitting = false
+amount = 1
+texture = ExtResource("11_3nfmf")
+lifetime = 0.3
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_0minr")
+
+[connection signal="dash" from="." to="PlayerSprite" method="dash_particle_emit"]
+[connection signal="dash_jump" from="." to="PlayerSprite" method="dash_particle_emit"]
+[connection signal="land_on_ground" from="." to="PlayerSprite" method="_on_player_land_on_ground"]
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="area_exited" from="Hitbox" to="." method="_on_hitbox_area_exited"]
+[connection signal="recoil" from="PlayerAttackHandler/SideAttack" to="." method="_on_side_attack_recoil"]
+[connection signal="hit" from="PlayerAttackHandler/UpAttack" to="." method="_on_up_attack_hit"]
+[connection signal="parried" from="PlayerAttackHandler/UpAttack" to="." method="_on_up_attack_parried"]
+[connection signal="hit" from="PlayerAttackHandler/DownAttack" to="." method="_on_down_attack_hit"]
+[connection signal="parried" from="PlayerAttackHandler/DownAttack" to="." method="_on_down_attack_parried"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="AttackComboTimer" to="." method="_on_attack_combo_timer_timeout"]
+[connection signal="timeout" from="LedgeGrabTimer" to="." method="_on_ledge_grab_timer_timeout"]

@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://hoepa0qumub1"]
+
+[ext_resource type="PackedScene" uid="uid://dp3j21ufoif5n" path="res://objects/level objects/collectible.tscn" id="1_5wfug"]
+[ext_resource type="Script" uid="uid://yckwc5jdoemt" path="res://objects/level objects/coin.gd" id="2_8uvud"]
+[ext_resource type="Texture2D" uid="uid://b32m2wvl6axee" path="res://sprites/objects/coin.png" id="3_koslv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xvbhi"]
+size = Vector2(8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vpc83"]
+atlas = ExtResource("3_koslv")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8vkkf"]
+atlas = ExtResource("3_koslv")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8bmbr"]
+atlas = ExtResource("3_koslv")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8xeo4"]
+atlas = ExtResource("3_koslv")
+region = Rect2(24, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dklp6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vpc83")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8vkkf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8bmbr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8xeo4")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 8.0
+}]
+
+[node name="Collectible" unique_id=1528239903 instance=ExtResource("1_5wfug")]
+script = ExtResource("2_8uvud")
+value = 1
+follow_range = 108.0
+is_static = true
+
+[node name="CollisionShape2D" parent="." index="0" unique_id=1803136250]
+shape = SubResource("RectangleShape2D_xvbhi")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="3" unique_id=1062640748]
+sprite_frames = SubResource("SpriteFrames_dklp6")
+autoplay = "default"
+frame_progress = 0.012348391

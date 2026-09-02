@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3suxxrs2ut7q"]
+
+[ext_resource type="PackedScene" uid="uid://dvhb82f036aie" path="res://objects/enemy.tscn" id="1_r0fhf"]
+[ext_resource type="Script" path="res://objects/enemies/projectile.gd" id="2_vkiom"]
+
+[node name="Enemy" instance=ExtResource("1_r0fhf")]
+script = ExtResource("2_vkiom")
+on_wall_hit = 0
+on_floor_hit = 0
+on_ceiling_hit = 0
+can_pierce = false
+can_rotate = false
+
+[connection signal="hit" from="Hurtbox" to="." method="_on_hurtbox_hit"]

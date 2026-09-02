@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://c4cdqykgmk72e"]
+
+[ext_resource type="PackedScene" uid="uid://d3suxxrs2ut7q" path="res://objects/enemies/projectile.tscn" id="1_ikdoq"]
+[ext_resource type="Texture2D" uid="uid://dfogsr05rx0rl" path="res://sprites/placeholder/box_default.png" id="2_6y388"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mdol0"]
+size = Vector2(8, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kdwlv"]
+size = Vector2(8, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sdsed"]
+size = Vector2(8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8cxut"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_6y388")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Enemy" instance=ExtResource("1_ikdoq")]
+on_wall_hit = 1
+on_floor_hit = 1
+on_ceiling_hit = 1
+can_move = true
+can_get_hit = true
+can_hurt = true
+can_take_damage = true
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("RectangleShape2D_mdol0")
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource("RectangleShape2D_kdwlv")
+
+[node name="Hurtbox" parent="." index="2"]
+damage = 10.0
+knockback_power = 100.0
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+shape = SubResource("RectangleShape2D_sdsed")
+
+[node name="AnimatedSprite2D" parent="." index="5"]
+modulate = Color(1, 0.701961, 0, 1)
+position = Vector2(-2.38419e-07, -2.38419e-07)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_8cxut")

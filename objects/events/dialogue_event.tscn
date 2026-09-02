@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://blcot3skpv13i"]
+
+[ext_resource type="PackedScene" uid="uid://dyqu6k3g82f1e" path="res://objects/event.tscn" id="1_62wht"]
+[ext_resource type="Script" path="res://objects/events/dialogue_event.gd" id="2_t5skk"]
+
+[node name="DialogueEvent" node_paths=PackedStringArray("event_chains") instance=ExtResource("1_62wht")]
+script = ExtResource("2_t5skk")
+event_chains = []

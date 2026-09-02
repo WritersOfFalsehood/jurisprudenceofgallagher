@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://bbbah8dxvxllv"]
+
+[ext_resource type="PackedScene" uid="uid://dvhb82f036aie" path="res://objects/enemy.tscn" id="1_xg4os"]
+[ext_resource type="Script" uid="uid://c3arri0xxx8xn" path="res://objects/enemies/worm.gd" id="2_67jws"]
+[ext_resource type="Texture2D" uid="uid://bt44d2hytfb4b" path="res://sprites/enemies/worm/Worm.png" id="2_llolk"]
+[ext_resource type="Script" uid="uid://dxahgpvbl2t0k" path="res://objects/loot.gd" id="3_8htse"]
+[ext_resource type="PackedScene" uid="uid://hoepa0qumub1" path="res://objects/level objects/coin.tscn" id="4_3l0jk"]
+
+[sub_resource type="Resource" id="Resource_xg4os"]
+script = ExtResource("3_8htse")
+item = ExtResource("4_3l0jk")
+amount_min = 2
+amount_max = 4
+metadata/_custom_type_script = "uid://dxahgpvbl2t0k"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fodb4"]
+size = Vector2(16, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0minr"]
+size = Vector2(16, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p8jiu"]
+size = Vector2(16, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hpwe3"]
+atlas = ExtResource("2_llolk")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_67jws"]
+atlas = ExtResource("2_llolk")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8htse"]
+atlas = ExtResource("2_llolk")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3l0jk"]
+atlas = ExtResource("2_llolk")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dklp6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hpwe3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_67jws")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8htse")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3l0jk")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 8.0
+}]
+
+[node name="Enemy" unique_id=664504772 instance=ExtResource("1_xg4os")]
+script = ExtResource("2_67jws")
+walk_speed = 25.0
+loot = Array[ExtResource("3_8htse")]([SubResource("Resource_xg4os")])
+max_hp = 15.0
+on_air_knockback_deceleration = 150.0
+on_ground_knockback_deceleration = 400.0
+can_move = true
+can_get_hit = true
+can_get_knockbacked = true
+can_hurt = true
+can_take_damage = true
+can_die = true
+can_get_stunned = true
+starting_direction = 0
+gravity = 700.0
+terminal_velocity = 350.0
+can_fall = true
+
+[node name="CollisionShape2D" parent="." index="0" unique_id=661771851]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_fodb4")
+
+[node name="CollisionShape2D" parent="Hitbox" parent_id_path=PackedInt32Array(1872581655) index="0" unique_id=1463374738]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_0minr")
+
+[node name="Hurtbox" parent="." index="2" unique_id=678974875]
+damage = 8.0
+knockback_power = 100.0
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0" unique_id=695694356]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_p8jiu")
+
+[node name="AnimatedSprite2D" parent="." index="5" unique_id=1896571713]
+position = Vector2(0, -10)
+sprite_frames = SubResource("SpriteFrames_dklp6")
+frame_progress = 0.70570457

@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://b2ls44v33ejvi"]
+
+[ext_resource type="PackedScene" uid="uid://bbbah8dxvxllv" path="res://objects/enemies/worm.tscn" id="1_05j1v"]
+[ext_resource type="Texture2D" uid="uid://da2y5vjydcy3u" path="res://sprites/enemies/worm/Worm Red.png" id="2_rrtms"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8kfbl"]
+atlas = ExtResource("2_rrtms")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wp4mc"]
+atlas = ExtResource("2_rrtms")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2nr8u"]
+atlas = ExtResource("2_rrtms")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f8aie"]
+atlas = ExtResource("2_rrtms")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rrtms"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8kfbl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wp4mc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2nr8u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f8aie")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Enemy" unique_id=664504772 instance=ExtResource("1_05j1v")]
+turn_on_edge = true
+
+[node name="AnimatedSprite2D" parent="." index="5" unique_id=1896571713]
+sprite_frames = SubResource("SpriteFrames_rrtms")
+frame_progress = 0.0

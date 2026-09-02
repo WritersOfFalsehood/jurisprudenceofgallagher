@@ -1,0 +1,182 @@
+[gd_scene format=3 uid="uid://dvhb82f036aie"]
+
+[ext_resource type="Script" uid="uid://0jgg4y60ukm2" path="res://objects/enemy.gd" id="1_yyklh"]
+[ext_resource type="PackedScene" uid="uid://cl8knsebwm6wp" path="res://components/hurtbox.tscn" id="2_xtov6"]
+[ext_resource type="Texture2D" uid="uid://c7kdyaf4p7p2t" path="res://sprites/effect/hit.png" id="3_41oev"]
+[ext_resource type="Texture2D" uid="uid://dbdkfo4wh0dev" path="res://sprites/effect/hit_particle.png" id="4_we7g8"]
+[ext_resource type="Texture2D" uid="uid://fe1fai11tyag" path="res://sprites/effect/die.png" id="5_3hb37"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mmiuk"]
+size = Vector2(12, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r4dlp"]
+size = Vector2(12, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wkuym"]
+size = Vector2(12, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ijfc7"]
+size = Vector2(0.1, 0.1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6413w"]
+size = Vector2(0.1, 0.1)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_dklp6"]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fodb4"]
+particle_flag_disable_z = true
+angle_min = 90.000015
+angle_max = 90.000015
+gravity = Vector3(0, 0, 0)
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+
+[sub_resource type="Curve" id="Curve_3hb37"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_we7g8"]
+curve = SubResource("Curve_3hb37")
+
+[sub_resource type="Curve" id="Curve_we7g8"]
+_limits = [0.0, 100.0, 0.0, 1.0]
+_data = [Vector2(0, 50), 0.0, 0.0, 0, 1, Vector2(1, 50), 0.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_o3p61"]
+curve = SubResource("Curve_we7g8")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ln1d1"]
+particle_flag_disable_z = true
+initial_velocity_min = 80.0
+initial_velocity_max = 120.0
+gravity = Vector3(0, 0, 0)
+damping_min = 1.8000001
+damping_max = 6.714
+damping_curve = SubResource("CurveTexture_o3p61")
+alpha_curve = SubResource("CurveTexture_we7g8")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_we7g8"]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3hb37"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+
+[sub_resource type="Curve" id="Curve_2ld5k"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_3hb37"]
+curve = SubResource("Curve_2ld5k")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2ld5k"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 30.0
+initial_velocity_max = 70.0
+gravity = Vector3(0, 150, 0)
+alpha_curve = SubResource("CurveTexture_3hb37")
+
+[node name="Enemy" type="CharacterBody2D" unique_id=664504772]
+collision_layer = 2
+collision_mask = 4
+platform_floor_layers = 4294967044
+platform_wall_layers = 4
+script = ExtResource("1_yyklh")
+max_hp = 1.0
+knockback_resistance = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=661771851]
+shape = SubResource("RectangleShape2D_mmiuk")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=1872581655]
+collision_layer = 2
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1463374738]
+shape = SubResource("RectangleShape2D_r4dlp")
+debug_color = Color(0.623529, 0.596078, 0, 0.12549)
+
+[node name="Hurtbox" parent="." unique_id=678974875 node_paths=PackedStringArray("collision_shape") instance=ExtResource("2_xtov6")]
+collision_layer = 32
+collision_mask = 17
+collision_shape = NodePath("CollisionShape2D")
+always_enabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=695694356]
+shape = SubResource("RectangleShape2D_wkuym")
+debug_color = Color(0.921569, 0, 0, 0.12549)
+
+[node name="EdgeDetectorLeft" type="Area2D" parent="." unique_id=2007776135]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EdgeDetectorLeft" unique_id=744730673]
+position = Vector2(-10, 11)
+shape = SubResource("RectangleShape2D_ijfc7")
+
+[node name="EdgeDetectorRight" type="Area2D" parent="." unique_id=1943091389]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EdgeDetectorRight" unique_id=1471962111]
+position = Vector2(10, 11)
+shape = SubResource("RectangleShape2D_6413w")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1896571713]
+
+[node name="StunTimer" type="Timer" parent="." unique_id=504752218]
+one_shot = true
+
+[node name="FlashEffectTimer" type="Timer" parent="." unique_id=650297152]
+wait_time = 0.1
+one_shot = true
+
+[node name="HitEffect" type="GPUParticles2D" parent="." unique_id=579319458]
+material = SubResource("CanvasItemMaterial_dklp6")
+emitting = false
+amount = 1
+texture = ExtResource("3_41oev")
+lifetime = 0.15000000000000002
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_fodb4")
+
+[node name="HitParticle" type="GPUParticles2D" parent="." unique_id=772297823]
+emitting = false
+amount = 12
+texture = ExtResource("4_we7g8")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_ln1d1")
+
+[node name="DieEffect" type="GPUParticles2D" parent="." unique_id=1912955228]
+material = SubResource("CanvasItemMaterial_we7g8")
+emitting = false
+amount = 1
+texture = ExtResource("5_3hb37")
+lifetime = 0.2
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_3hb37")
+
+[node name="DieParticle" type="GPUParticles2D" parent="." unique_id=983864975]
+emitting = false
+amount = 16
+texture = ExtResource("4_we7g8")
+lifetime = 0.8
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_2ld5k")
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="timeout" from="FlashEffectTimer" to="." method="_on_flash_effect_timer_timeout"]

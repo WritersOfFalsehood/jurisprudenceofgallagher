@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bdlxm5y3ooo2q"]
+
+[ext_resource type="Script" path="res://autoload/display_manager.gd" id="1_sulhh"]
+
+[node name="DisplayManager" type="Node2D"]
+script = ExtResource("1_sulhh")
+zoom_windowed = 4
+zoom_fullscreen = 5
+view_size = Vector2(384, 216)

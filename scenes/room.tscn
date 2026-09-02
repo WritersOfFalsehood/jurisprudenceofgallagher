@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://dyqvqii6svuhq"]
+
+[ext_resource type="Script" uid="uid://dtlpao7jsefel" path="res://scenes/room.gd" id="1_n46jj"]
+[ext_resource type="Script" uid="uid://dcfwkbs4racxb" path="res://scripts/camera.gd" id="2_srixd"]
+[ext_resource type="PackedScene" uid="uid://13hsnihbrg14" path="res://objects/player.tscn" id="3_v37ig"]
+[ext_resource type="PackedScene" uid="uid://b883lsnqtf2x6" path="res://objects/level objects/level_tile_map.tscn" id="4_ns7wb"]
+
+[node name="Room" type="Node2D" unique_id=1078291740]
+script = ExtResource("1_n46jj")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=691567825]
+
+[node name="Background" type="ParallaxBackground" parent="." unique_id=621297462]
+
+[node name="CanvasModulateBackground" type="CanvasModulate" parent="Background" unique_id=909707585]
+
+[node name="Gallagher" parent="." unique_id=655586921 instance=ExtResource("3_v37ig")]
+unique_name_in_owner = true
+
+[node name="MainCamera" type="Camera2D" parent="." unique_id=286138721]
+script = ExtResource("2_srixd")
+
+[node name="LevelTileMap" parent="." unique_id=1500483420 instance=ExtResource("4_ns7wb")]
+layer_3/name = "Background"
+layer_3/z_index = -1
+
+[node name="Enemies" type="Node2D" parent="." unique_id=411277872]
+
+[node name="Objects" type="Node2D" parent="." unique_id=483944079]
+
+[node name="Projectiles" type="Node2D" parent="." unique_id=1170973925]
+
+[node name="RoomTransitions" type="Node2D" parent="." unique_id=184713210]
+
+[node name="Loot" type="Node2D" parent="." unique_id=84040762]
+
+[node name="Particles" type="Node2D" parent="." unique_id=1962310773]
