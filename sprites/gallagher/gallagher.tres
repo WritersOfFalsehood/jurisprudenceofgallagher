@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://oojrep0u75ow" path="res://sprites/gallagher/Gallagher Right Dodge Roll 2.png" id="7_lg2c4"]
 [ext_resource type="Texture2D" uid="uid://dumhklnpu7gl3" path="res://sprites/gallagher/Gallagher Right Slide 2.png" id="7_wqmqm"]
 [ext_resource type="Texture2D" uid="uid://7kw6bttt03bg" path="res://sprites/gallagher/Gallagher Right Walking 2.png" id="8_1ejy2"]
+[ext_resource type="Texture2D" uid="uid://bne31d1ows60w" path="res://sprites/gallagher/Gallagher Sit.png" id="11_vwwxc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eki2p"]
 atlas = ExtResource("1_iitje")
@@ -280,6 +281,10 @@ region = Rect2(384, 0, 64, 64)
 [sub_resource type="AtlasTexture" id="AtlasTexture_gcqfe"]
 atlas = ExtResource("7_lg2c4")
 region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tylpl"]
+atlas = ExtResource("11_vwwxc")
+region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mqji0"]
 atlas = ExtResource("1_iitje")
@@ -580,6 +585,14 @@ animations = [{
 "loop": 0,
 "name": &"roll",
 "speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tylpl")
+}],
+"loop": 1,
+"name": &"sit",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,

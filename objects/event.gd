@@ -12,16 +12,29 @@ signal on_event_finished
 
 func execute():
 	if enabled:
-		active = true
-		get_parent().event_started(self)
-		on_event_executed.emit()
+		if !active:
+			on_execute()
+			
+			active = true
+			get_parent().event_started(self)
+			on_event_executed.emit()
 	else:
 		finish()
 
 
 func finish():
+	on_finish()
+	
 	is_executed_in_this_run = true
 	active = false
 	get_parent().event_ended(self)
 	if enabled:
 		on_event_finished.emit()
+
+
+func on_execute():
+	pass
+
+
+func on_finish():
+	pass

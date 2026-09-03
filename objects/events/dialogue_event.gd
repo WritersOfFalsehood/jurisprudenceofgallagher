@@ -18,18 +18,12 @@ func _ready():
 		enabled = false
 
 
-func execute():
-	if enabled:
-		if !active:
-			active = true
-			DialogueBox.visible = true
-			dialogue_items[index].activate()
-		super.execute()
-	else:
-		finish()
+func on_execute():
+	DialogueBox.visible = true
+	dialogue_items[index].activate()
 
 
-func finish():
+func on_finish():
 	DialogueBox.visible = false
 	index = 0
 	
@@ -38,7 +32,6 @@ func finish():
 			if return_value < event_chains.size() and return_value > -1:
 				event_chains[return_value].execute_event()
 	
-	super.finish()
 
 
 func next_item():

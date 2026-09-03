@@ -74,6 +74,7 @@ var is_jumping : bool
 var is_dash_jumping : bool
 var is_getting_knockbacked : bool
 var is_climbing : bool
+var is_sitting : bool
 
 var current_acceleration : float
 var current_deceleration : float
@@ -95,8 +96,8 @@ var is_touching_ladder : bool
 var ladder_upper_bound : float
 var ladder_lower_bound : float
 
-var is_on_automove : bool
-var automove_velocity : Vector2
+var ignore_player_input : bool
+var simulated_inputs := {}
 
 var current_transition_direction : Vector2		# used to move player into screen transitions
 
@@ -126,22 +127,65 @@ func _ready():
 	if PlayerProperties.player_direction_in_next_scene != 0:
 		direction_x = PlayerProperties.player_direction_in_next_scene
 		PlayerProperties.player_direction_in_next_scene = 0
+	
+	#prepare simulated input dictionary
+	for action in InputMap.get_actions():
+		simulated_inputs[action] = false
 
 
 func _process(delta):
 	pass
-	
 
-func _input(event):
-	# Attacking
-	if event.is_action_pressed("Attack"):
+
+func is_input_action_active(action : StringName):
+	if simulated_inputs.get(action, false):
+		return true
+	
+	if ignore_player_input:
+		return false
+	
+	return Input.is_action_pressed(action)
+
+
+func get_axis(neg_action : StringName, pos_action : StringName):
+	if simulated_inputs.get(neg_action) or simulated_inputs.get(pos_action):
+		var neg = 1.0 if simulated_inputs.get(neg_action) else 0.0
+		var pos = 1.0 if simulated_inputs.get(pos_action) else 0.0
+		return pos - neg
+	
+	if ignore_player_input:
+		return 0.0
+	
+	return Input.get_axis(neg_action, pos_action)
+
+
+func on_jump_input():
+	if can_move:
+		velocity.y = -JUMP_SPEED
+		is_jumping = true
+		is_climbing = false
+		
+		jump.emit()
+		stop_climbing.emit()
+	elif !dash_timer.is_stopped() and dash_jump_timer.is_stopped():
+		# dash jumping
+		dash_timer.start(0.35)			# to keep dash deceleration longer
+		velocity.y = -DASH_JUMP_SPEED_Y
+		velocity.x = DASH_JUMP_SPEED_X * direction_x
+		is_jumping = true
+		is_dash_jumping = true
+		
+		dash_jump.emit()
+
+
+func on_attack_input():
 		
 		# Verify Direction
-		if sign(Input.get_axis("Left", "Right")) != 0:
-			direction_x = sign(Input.get_axis("Left", "Right"))
+		if sign(get_axis("Left", "Right")) != 0:
+			direction_x = sign(get_axis("Left", "Right"))
 		
-		var is_attacking_up = Input.is_action_pressed("Up")
-		var is_attacking_down = Input.is_action_pressed("Down") and !is_on_floor()
+		var is_attacking_up = is_input_action_active("Up")
+		var is_attacking_down = is_input_action_active("Down") and !is_on_floor()
 		
 		var can_combo = combo_stage == 2 and combo_count <= 2 and !is_attacking_up and !is_attacking_down and !is_climbing
 		
@@ -149,7 +193,7 @@ func _input(event):
 			if can_move or can_combo or !dash_timer.is_stopped():	# Have to do this exclusion so that dash cencelling works correctly
 				# Dash Cancel
 				dash_timer.stop()
-				var input_x_axis = sign(Input.get_axis("Left", "Right"))
+				var input_x_axis = sign(get_axis("Left", "Right"))
 				if input_x_axis != 0:
 					direction_x = input_x_axis
 				
@@ -182,50 +226,80 @@ func _input(event):
 				
 				# Start attack anim
 				player_sprite.start_attack(player_attack_handler.active_weapon_index, combo_count)
-	
-	if can_move:
-		# Dashing
-		if event.is_action_pressed("Dash") and !is_climbing:
-			dash.emit()
-			
-			# Verify Direction
-			if sign(Input.get_axis("Left", "Right")) != 0:
-				direction_x = sign(Input.get_axis("Left", "Right"))
-			
-			dash_timer.start(default_dash_time)
-			dash_jump_timer.start()				#timeframe before you can jump out of a dash
-			velocity = Vector2.RIGHT * direction_x * DASH_SPEED
-			
-			is_dash_jumping = false
-		
-		# Climbing
-		if (event.is_action_pressed("Up") or event.is_action_pressed("Down")) and is_touching_ladder:
-			is_climbing = true
-			
-			# do a premature check to prevent snapping
-			if is_on_floor() and !Input.is_action_pressed("Up") and abs(position.y - ladder_lower_bound) < 1:
-				is_climbing = false
-			
-			if is_climbing:
-				start_climbing.emit()
-		
 
+
+func on_dash_input():
+	dash.emit()
+	
+	# Verify Direction
+	if sign(get_axis("Left", "Right")) != 0:
+		direction_x = sign(get_axis("Left", "Right"))
+	
+	dash_timer.start(default_dash_time)
+	dash_jump_timer.start()				#timeframe before you can jump out of a dash
+	velocity = Vector2.RIGHT * direction_x * DASH_SPEED
+	
+	is_dash_jumping = false
+
+
+func on_climb_input():
+	is_climbing = true
+	
+	# do a premature check to prevent snapping
+	if is_on_floor() and !is_input_action_active("Up") and abs(position.y - ladder_lower_bound) < 1:
+		is_climbing = false
+	
+	if is_climbing:
+		start_climbing.emit()
+
+
+
+
+func _input(event):
+	if !ignore_player_input:
+		# Attacking
+		if event.is_action_pressed("Attack"):
+			on_attack_input()
+		
+		if can_move:
+			# Dashing
+			if event.is_action_pressed("Dash") and !is_climbing:
+				on_dash_input()
+			
+			# Climbing
+			if (event.is_action_pressed("Up") or event.is_action_pressed("Down")) and is_touching_ladder:
+				on_climb_input()
+		
+		# Get up from sitting
+		if event.is_action_pressed("Left") or event.is_action_pressed("Right") or event.is_action_pressed("Jump") or event.is_action_pressed("Up"):
+			is_sitting = false
 
 
 
 func _physics_process(delta):
-	if is_on_automove:
-		velocity = automove_velocity * delta
-		direction_x = sign(automove_velocity.x)
+	# INPUT
+	if simulated_inputs["Jump"]:
+		on_jump_input()
+		simulated_inputs["Jump"] = false
+	if simulated_inputs["Attack"]:
+		on_attack_input()
+		simulated_inputs["Attack"] = false
+	if simulated_inputs["Dash"]:
+		on_dash_input()
+		simulated_inputs["Dash"] = false
+	if simulated_inputs["Up"] or simulated_inputs["Down"]:
+		on_climb_input()
 	
 	if RoomTransitioner.is_transitioning:
 		can_move = false
 	
-	var input_x_axis = sign(Input.get_axis("Left", "Right"))
-	var input_y_axis = sign(Input.get_axis("Up", "Down"))
-	var is_pressing_down = Input.is_action_pressed("Down")
-	var is_pressing_up = Input.is_action_pressed("Up")
-	var is_pressing_jump = Input.is_action_pressed("Jump")
+	var input_x_axis = sign(get_axis("Left", "Right"))
+	var input_y_axis = sign(get_axis("Up", "Down"))
+	var is_pressing_down = is_input_action_active("Down")
+	var is_pressing_up = is_input_action_active("Up")
+	var is_pressing_jump = is_input_action_active("Jump")
+	
+	# MOVEMENT
 	
 	if !can_move:
 		input_x_axis = 0
@@ -241,23 +315,9 @@ func _physics_process(delta):
 		is_jumping = false
 		is_dash_jumping = false
 		
-	if Input.is_action_just_pressed("Jump") and (is_on_floor() or is_climbing):
-		if can_move:
-			velocity.y = -JUMP_SPEED
-			is_jumping = true
-			is_climbing = false
-			
-			jump.emit()
-			stop_climbing.emit()
-		elif !dash_timer.is_stopped() and dash_jump_timer.is_stopped():
-			# dash jumping
-			dash_timer.start(0.35)			# to keep dash deceleration longer
-			velocity.y = -DASH_JUMP_SPEED_Y
-			velocity.x = DASH_JUMP_SPEED_X * direction_x
-			is_jumping = true
-			is_dash_jumping = true
-			
-			dash_jump.emit()
+	# Jumping
+	if Input.is_action_just_pressed("Jump") and (is_on_floor() or is_climbing) and !ignore_player_input:
+		on_jump_input()
 	
 	# Horizontal direction and movement
 	is_turning = false
@@ -330,7 +390,7 @@ func _physics_process(delta):
 	
 	
 	# Finalize and apply movement
-	can_move = !is_getting_knockbacked and dash_timer.is_stopped() and ledge_grab_timer.is_stopped() and !is_on_automove
+	can_move = !is_getting_knockbacked and dash_timer.is_stopped() and ledge_grab_timer.is_stopped() and !is_sitting
 	
 	# cant move if attacking on ground or ladder
 	if attack_stage != 0 and attack_type == attack_types.SIDE_ATTACK and (is_on_floor() or is_climbing):
@@ -445,6 +505,7 @@ func _on_hitbox_area_entered(area):
 					dash_timer.stop()
 					ledge_grab_timer.stop()
 					is_climbing = false
+					is_sitting = false
 					
 					# Apply knockback
 					is_getting_knockbacked = true

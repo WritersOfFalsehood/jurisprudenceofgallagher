@@ -59,6 +59,9 @@ func _physics_process(delta):
 			animation_index = "climb"
 			speed_scale = Input.get_axis("Down", "Up")
 		
+		if player.is_sitting:
+			animation_index = "sit"
+		
 		if player.is_getting_knockbacked:
 			animation_index = "fall"
 	

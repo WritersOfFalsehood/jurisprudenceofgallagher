@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dvhb82f036aie" path="res://objects/enemy.tscn" id="1_hu00l"]
 [ext_resource type="Script" uid="uid://dfabahfxkg7yn" path="res://objects/enemies/wolf.gd" id="2_jkmw8"]
 [ext_resource type="PackedScene" uid="uid://hoepa0qumub1" path="res://objects/level objects/coin.tscn" id="3_dtv07"]
-[ext_resource type="Script" uid="uid://dxahgpvbl2t0k" path="res://objects/loot.gd" id="4_cpear"]
+[ext_resource type="Script" uid="uid://dxahgpvbl2t0k" path="res://scripts/loot.gd" id="4_cpear"]
 [ext_resource type="Texture2D" uid="uid://m0dqusee1n46" path="res://sprites/enemies/wolf/WolfFall.png" id="5_nn0c0"]
 [ext_resource type="Texture2D" uid="uid://py7c3ui1udhl" path="res://sprites/enemies/wolf/WolfJump.png" id="6_kp7xe"]
 [ext_resource type="Texture2D" uid="uid://dljiu06ft3ebw" path="res://sprites/enemies/wolf/WolfKnockback.png" id="7_dtv07"]

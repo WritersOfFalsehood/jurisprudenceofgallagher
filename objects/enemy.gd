@@ -174,7 +174,6 @@ func get_hit(area):
 	HitstopManager.hitstop(0.08)
 	
 	hp -= area.damage
-	print(area)
 	
 	var knockback_direction : int
 	var attack_angle : float		# angle of the vector pointing FROM attack source

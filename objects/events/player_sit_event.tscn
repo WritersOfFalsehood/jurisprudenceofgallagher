@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://diwpo558chx5a"]
+
+[ext_resource type="PackedScene" uid="uid://dyqu6k3g82f1e" path="res://objects/event.tscn" id="1_msxyh"]
+[ext_resource type="Script" uid="uid://cyvk3ogimkjvf" path="res://objects/events/player_sit_event.gd" id="2_vtgqu"]
+
+[node name="PlayerSit" unique_id=1615734847 instance=ExtResource("1_msxyh")]
+script = ExtResource("2_vtgqu")
