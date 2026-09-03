@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://fjsnk73igq0r" path="res://objects/enemies/hellhound.gd" id="2_skwji"]
 [ext_resource type="Texture2D" uid="uid://o6dofeqlv7j" path="res://sprites/enemies/hellhound/Hellhound Knockback.png" id="2_vmss6"]
 [ext_resource type="Texture2D" uid="uid://bns3ucdam0dwr" path="res://sprites/enemies/hellhound/Hellhound Run.png" id="3_7t061"]
-[ext_resource type="Script" uid="uid://dxahgpvbl2t0k" path="res://objects/loot.gd" id="3_ergxe"]
+[ext_resource type="Script" uid="uid://dxahgpvbl2t0k" path="res://scripts/loot.gd" id="3_ergxe"]
 [ext_resource type="PackedScene" uid="uid://hoepa0qumub1" path="res://objects/level objects/coin.tscn" id="4_auc3u"]
 [ext_resource type="Texture2D" uid="uid://bnm4dibjobll3" path="res://sprites/enemies/hellhound/Hellhound Walking.png" id="4_xh6ph"]
 

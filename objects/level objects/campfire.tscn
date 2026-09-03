@@ -3,6 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://di17v2uobnjmq" path="res://sprites/objects/campfire.png" id="1_0slf3"]
 [ext_resource type="PackedScene" uid="uid://dyuldrks65nue" path="res://objects/interaction_object.tscn" id="2_mtqhr"]
 [ext_resource type="PackedScene" uid="uid://dl575tedt8gae" path="res://objects/events/move_player_event.tscn" id="3_mw4kw"]
+[ext_resource type="Script" uid="uid://wqti8imt583e" path="res://scripts/forced_player_movement.gd" id="4_mtqhr"]
+[ext_resource type="PackedScene" uid="uid://diwpo558chx5a" path="res://objects/events/player_sit_event.tscn" id="5_mw4kw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_voo6m"]
 atlas = ExtResource("1_0slf3")
@@ -57,6 +59,12 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_fodb4"]
 radius = 18.027756
 
+[sub_resource type="Resource" id="Resource_voo6m"]
+script = ExtResource("4_mtqhr")
+input_action = "Move to Point"
+duration = -16.0
+metadata/_custom_type_script = "uid://wqti8imt583e"
+
 [node name="Campfire" type="Node2D" unique_id=1268968916]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=45787849]
@@ -72,5 +80,6 @@ interaction_mode = 1
 shape = SubResource("CircleShape2D_fodb4")
 
 [node name="MovePlayer" parent="InteractionObject" unique_id=1894525989 instance=ExtResource("3_mw4kw")]
-stop_point = Vector2(-16, 0)
-speed = 100.0
+movements = Array[ExtResource("4_mtqhr")]([SubResource("Resource_voo6m")])
+
+[node name="PlayerSit" parent="InteractionObject" unique_id=1615734847 instance=ExtResource("5_mw4kw")]

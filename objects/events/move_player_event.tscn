@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://dyqu6k3g82f1e" path="res://objects/event.tscn" id="1_otp7f"]
 [ext_resource type="Script" uid="uid://dv7bi8up0tyk4" path="res://objects/events/move_player_event.gd" id="2_v7djt"]
+[ext_resource type="Script" uid="uid://wqti8imt583e" path="res://scripts/forced_player_movement.gd" id="3_lw46e"]
 
 [node name="MovePlayer" unique_id=1894525989 instance=ExtResource("1_otp7f")]
 script = ExtResource("2_v7djt")
-stop_point = Vector2(0, 0)
-speed = 0.0
+movements = Array[ExtResource("3_lw46e")]([])

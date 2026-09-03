@@ -74,6 +74,7 @@ var is_jumping : bool
 var is_dash_jumping : bool
 var is_getting_knockbacked : bool
 var is_climbing : bool
+var is_sitting : bool
 
 var current_acceleration : float
 var current_deceleration : float
@@ -126,6 +127,10 @@ func _ready():
 	if PlayerProperties.player_direction_in_next_scene != 0:
 		direction_x = PlayerProperties.player_direction_in_next_scene
 		PlayerProperties.player_direction_in_next_scene = 0
+	
+	#prepare simulated input dictionary
+	for action in InputMap.get_actions():
+		simulated_inputs[action] = false
 
 
 func _process(delta):
@@ -264,10 +269,26 @@ func _input(event):
 			# Climbing
 			if (event.is_action_pressed("Up") or event.is_action_pressed("Down")) and is_touching_ladder:
 				on_climb_input()
+		
+		# Get up from sitting
+		if event.is_action_pressed("Left") or event.is_action_pressed("Right") or event.is_action_pressed("Jump") or event.is_action_pressed("Up"):
+			is_sitting = false
 
 
 
 func _physics_process(delta):
+	# INPUT
+	if simulated_inputs["Jump"]:
+		on_jump_input()
+		simulated_inputs["Jump"] = false
+	if simulated_inputs["Attack"]:
+		on_attack_input()
+		simulated_inputs["Attack"] = false
+	if simulated_inputs["Dash"]:
+		on_dash_input()
+		simulated_inputs["Dash"] = false
+	if simulated_inputs["Up"] or simulated_inputs["Down"]:
+		on_climb_input()
 	
 	if RoomTransitioner.is_transitioning:
 		can_move = false
@@ -277,6 +298,8 @@ func _physics_process(delta):
 	var is_pressing_down = is_input_action_active("Down")
 	var is_pressing_up = is_input_action_active("Up")
 	var is_pressing_jump = is_input_action_active("Jump")
+	
+	# MOVEMENT
 	
 	if !can_move:
 		input_x_axis = 0
@@ -367,7 +390,7 @@ func _physics_process(delta):
 	
 	
 	# Finalize and apply movement
-	can_move = !is_getting_knockbacked and dash_timer.is_stopped() and ledge_grab_timer.is_stopped()
+	can_move = !is_getting_knockbacked and dash_timer.is_stopped() and ledge_grab_timer.is_stopped() and !is_sitting
 	
 	# cant move if attacking on ground or ladder
 	if attack_stage != 0 and attack_type == attack_types.SIDE_ATTACK and (is_on_floor() or is_climbing):
@@ -482,6 +505,7 @@ func _on_hitbox_area_entered(area):
 					dash_timer.stop()
 					ledge_grab_timer.stop()
 					is_climbing = false
+					is_sitting = false
 					
 					# Apply knockback
 					is_getting_knockbacked = true

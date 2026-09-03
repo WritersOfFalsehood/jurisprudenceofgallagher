@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dvhb82f036aie" path="res://objects/enemy.tscn" id="1_xg4os"]
 [ext_resource type="Script" uid="uid://c3arri0xxx8xn" path="res://objects/enemies/worm.gd" id="2_67jws"]
 [ext_resource type="Texture2D" uid="uid://bt44d2hytfb4b" path="res://sprites/enemies/worm/Worm.png" id="2_llolk"]
-[ext_resource type="Script" uid="uid://dxahgpvbl2t0k" path="res://objects/loot.gd" id="3_8htse"]
+[ext_resource type="Script" uid="uid://dxahgpvbl2t0k" path="res://scripts/loot.gd" id="3_8htse"]
 [ext_resource type="PackedScene" uid="uid://hoepa0qumub1" path="res://objects/level objects/coin.tscn" id="4_3l0jk"]
 
 [sub_resource type="Resource" id="Resource_xg4os"]
