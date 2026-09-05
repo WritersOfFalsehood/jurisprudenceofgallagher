@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://dc3fng2b6qkvg"]
+[gd_scene format=4 uid="uid://dc3fng2b6qkvg"]
 
 [ext_resource type="PackedScene" uid="uid://dyqvqii6svuhq" path="res://scenes/room.tscn" id="1_dwq75"]
 [ext_resource type="Texture2D" uid="uid://usj8yo3r8awb" path="res://sprites/backgrounds/hills/hills_sky.png" id="2_rxtxp"]
@@ -16,58 +16,55 @@
 [node name="Room" unique_id=1363764873 instance=ExtResource("1_dwq75")]
 room_size = Vector2(1600, 512)
 
-[node name="Sky" type="ParallaxLayer" parent="Background" parent_id_path=PackedInt32Array(621297462) index="1" unique_id=1969286450]
-motion_scale = Vector2(0.1, 0.1)
-motion_offset = Vector2(0, -200)
-motion_mirroring = Vector2(384, 0)
+[node name="Sky" type="Parallax2D" parent="Background" parent_id_path=PackedInt32Array(1902121465) index="0" unique_id=565288577]
+scroll_scale = Vector2(0.1, 0.1)
+scroll_offset = Vector2(0, -200)
+repeat_size = Vector2(384, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Sky" index="0" unique_id=1686237380]
 texture = ExtResource("2_rxtxp")
 centered = false
 
-[node name="Ground1" type="ParallaxLayer" parent="Background" parent_id_path=PackedInt32Array(621297462) index="2" unique_id=973874216]
-motion_scale = Vector2(0.3, 0.3)
-motion_offset = Vector2(0, -144)
-motion_mirroring = Vector2(384, 0)
+[node name="Ground1" type="Parallax2D" parent="Background" parent_id_path=PackedInt32Array(1902121465) index="1" unique_id=863820692]
+scroll_scale = Vector2(0.3, 0.3)
+scroll_offset = Vector2(0, -144)
+repeat_size = Vector2(384, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Ground1" index="0" unique_id=339016]
 texture = ExtResource("3_yhhan")
 centered = false
 
-[node name="Ground2" type="ParallaxLayer" parent="Background" parent_id_path=PackedInt32Array(621297462) index="3" unique_id=26689836]
-motion_scale = Vector2(0.4, 0.4)
-motion_offset = Vector2(0, -128)
-motion_mirroring = Vector2(384, 0)
+[node name="Ground2" type="Parallax2D" parent="Background" parent_id_path=PackedInt32Array(1902121465) index="2" unique_id=1694621936]
+scroll_scale = Vector2(0.4, 0.4)
+scroll_offset = Vector2(0, -128)
+repeat_size = Vector2(384, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Ground2" index="0" unique_id=1247046922]
 texture = ExtResource("4_nydvd")
 centered = false
 
-[node name="Ground3" type="ParallaxLayer" parent="Background" parent_id_path=PackedInt32Array(621297462) index="4" unique_id=1639880002]
-motion_scale = Vector2(0.5, 0.5)
-motion_offset = Vector2(0, -96)
-motion_mirroring = Vector2(384, 0)
+[node name="Ground3" type="Parallax2D" parent="Background" parent_id_path=PackedInt32Array(1902121465) index="3" unique_id=1417946023]
+scroll_scale = Vector2(0.5, 0.5)
+scroll_offset = Vector2(0, -96)
+repeat_size = Vector2(384, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Ground3" index="0" unique_id=1618075220]
 texture = ExtResource("5_nmpjw")
 centered = false
 
-[node name="LevelTileMap" parent="." index="3" unique_id=1500483420]
-layer_0/tile_data = PackedInt32Array(2031715, 131076, 2, 1966179, 131076, 1, 2031714, 131076, 2, 1966178, 131076, 1, 2031713, 131076, 2, 1966177, 458756, 3, 2031712, 131076, 2, 1966176, 458756, 3, 2031711, 131076, 2, 1966175, 458756, 3, 2031710, 131076, 2, 1966174, 131076, 1, 2031709, 131076, 2, 1966173, 458756, 3, 2031708, 131076, 2, 1966172, 131076, 1, 2031707, 131076, 2, 1966171, 131076, 1, 2031706, 131076, 2, 1966170, 458756, 3, 2031705, 131076, 2, 1966169, 131076, 1, 2031704, 131076, 2, 1966168, 131076, 1, 2031703, 131076, 2, 1966167, 131076, 1, 2031702, 131076, 2, 1966166, 131076, 1, 2031701, 131076, 2, 1966165, 131076, 1, 2031700, 131076, 2, 1966164, 458756, 3, 2031699, 131076, 2, 1966163, 131076, 1, 2031698, 131076, 2, 1966162, 458756, 3, 2031697, 131076, 2, 1966161, 458756, 3, 2031696, 131076, 2, 1966160, 131076, 1, 2031695, 131076, 2, 1966159, 131076, 1, 2031694, 131076, 2, 1966158, 131076, 1, 2031693, 131076, 2, 1966157, 131076, 1, 2031692, 131076, 2, 1966156, 131076, 1, 2031691, 131076, 2, 1966155, 458756, 3, 2031690, 131076, 2, 1966154, 458756, 3, 2031689, 131076, 2, 1966153, 131076, 1, 2031688, 131076, 2, 1966152, 131076, 1, 2031687, 131076, 2, 1966151, 131076, 1, 1966143, 196612, 1, 2031678, 131076, 2, 1966142, 458756, 3, 2031677, 131076, 2, 1966141, 131076, 1, 2031676, 131076, 2, 1966140, 458756, 3, 2031675, 131076, 2, 1966139, 131076, 1, 2031674, 131076, 2, 1966138, 458756, 3, 2031673, 131076, 2, 1966137, 458756, 3, 2031672, 131076, 2, 1966136, 131076, 1, 2031671, 131076, 2, 1966135, 393220, 3, 2031670, 131076, 2, 1966134, 131076, 2, 2031669, 131076, 2, 1966133, 131076, 2, 2031668, 131076, 2, 1966132, 131076, 2, 2031667, 131076, 2, 1966131, 131076, 2, 2031666, 131076, 2, 1966130, 131076, 2, 2031665, 131076, 2, 1966129, 524292, 3, 2031664, 131076, 2, 1966128, 458756, 3, 2031663, 131076, 2, 1966127, 131076, 1, 2031662, 131076, 2, 1966126, 458756, 3, 2031661, 131076, 2, 1966125, 458756, 3, 2031660, 131076, 2, 1966124, 131076, 1, 2031659, 131076, 2, 1966123, 131076, 1, 2031658, 131076, 2, 1966122, 131076, 1, 2031657, 131076, 2, 1966121, 458756, 3, 2031656, 131076, 2, 1966120, 458756, 3, 2031655, 131076, 2, 1966119, 458756, 3, 2031654, 131076, 2, 1966118, 131076, 1, 2031653, 131076, 2, 1966117, 393220, 3, 2031652, 131076, 2, 1966116, 131076, 2, 2031651, 131076, 2, 1966115, 131076, 2, 2031650, 131076, 2, 1966114, 131076, 2, 2031649, 131076, 2, 1966113, 131076, 2, 2031648, 131076, 2, 1966112, 131076, 2, 2031647, 131076, 2, 1966111, 131076, 2, 2031646, 131076, 2, 1966110, 524292, 3, 2031645, 131076, 2, 1966109, 458756, 3, 2031644, 131076, 2, 1966108, 131076, 1, 2031643, 131076, 2, 1966107, 458756, 3, 2031642, 131076, 2, 1966106, 131076, 1, 2031641, 131076, 2, 1966105, 458756, 3, 2031640, 131076, 2, 1966104, 131076, 1, 2031639, 131076, 2, 1966103, 131076, 1, 2031638, 131076, 2, 1966102, 458756, 3, 2031637, 131076, 2, 1966101, 131076, 1, 2031636, 131076, 2, 1966100, 131076, 1, 2031635, 131076, 2, 1966099, 131076, 1, 2031634, 131076, 2, 1966098, 131076, 1, 2031633, 131076, 2, 1966097, 131076, 1, 2031632, 131076, 2, 1966096, 458756, 3, 2031631, 131076, 2, 1966095, 458756, 3, 2031630, 131076, 2, 1966094, 131076, 1, 2031629, 131076, 2, 1966093, 458756, 3, 2031628, 131076, 2, 1966092, 131076, 1, 2031627, 131076, 2, 1966091, 131076, 1, 2031626, 131076, 2, 1966090, 131076, 1, 2031625, 131076, 2, 1966089, 458756, 3, 2031624, 131076, 2, 1966088, 131076, 1, 2031623, 131076, 2, 1966087, 131076, 1, 2031622, 131076, 2, 1966086, 458756, 3, 2031621, 131076, 2, 1966085, 131076, 1, 2031620, 131076, 2, 1966084, 458756, 3, 2031619, 131076, 2, 1966083, 131076, 1, 2031618, 131076, 2, 1966082, 131076, 1, 2031617, 131076, 2, 1966081, 458756, 3, 2031616, 131076, 2, 1966080, 458756, 3, 1900574, 65540, 1, 1900575, 131076, 1, 1900576, 458756, 3, 1900577, 524292, 3, 1900578, 131076, 2, 1835041, 65540, 1, 1835042, 131076, 1, 1835043, 131076, 1, 1900579, 131076, 2, 1900580, 131076, 2, 1900581, 196612, 2, 1835044, 458756, 3, 1835045, 196612, 1, 1900593, 524292, 2, 1835057, 65540, 2, 1769521, 524292, 2, 1769522, 131076, 2, 1769523, 131076, 2, 1835058, 131076, 2, 1900594, 131076, 2, 1900595, 131076, 2, 1835059, 131076, 2, 1769524, 131076, 2, 1835060, 131076, 2, 1900596, 131076, 2, 1900597, 131076, 2, 1835061, 131076, 2, 1769525, 393220, 3, 1703985, 65540, 1, 1703986, 458756, 3, 1703987, 458756, 3, 1703988, 131076, 1, 1703989, 196612, 1, 1769526, 196612, 1, 1835062, 393220, 3, 1900598, 131076, 2, 1835063, 196612, 1, 1900599, 196612, 2, 2031679, 196612, 2, 1966148, 65540, 1, 2031684, 65540, 2, 1966149, 131076, 1, 2031685, 131076, 2, 1966150, 131076, 1, 2031686, 131076, 2, 1900561, 1245188, 10, 1900560, 1245188, 10, 1900559, 1179652, 10, 1900562, 1310724, 10, 1900584, 1179652, 10, 1900591, 1310724, 10, 1900585, 1245188, 10, 1900586, 1245188, 10, 1900587, 1245188, 10, 1900588, 1245188, 10, 1900589, 1245188, 10, 1900590, 1245188, 10, 1900617, 1179652, 10, 1900618, 1245188, 10, 1900619, 1245188, 10, 1900620, 1245188, 10, 1900625, 1245188, 10, 1900626, 1245188, 10, 1900627, 1245188, 10, 1900628, 1245188, 10, 1900629, 1245188, 10, 1900630, 1245188, 10, 1900634, 1245188, 10, 1900635, 1245188, 10, 1900636, 1245188, 10, 1900633, 1179652, 10, 1900624, 1179652, 10, 1900631, 1310724, 10, 1900637, 1310724, 10, 1900621, 1310724, 10, 1900604, 1310724, 10, 1900603, 1179652, 10)
-layer_3/name = "Semisolids"
-layer_4/name = "Background"
-layer_4/z_index = -3
-layer_4/tile_data = PackedInt32Array(1704007, 131076, 9, 1704012, 458756, 9, 1704017, 458756, 9, 1704022, 458756, 9, 1704027, 786436, 9)
-layer_5/name = "Background Objects 1"
-layer_5/z_index = -1
-layer_5/tile_data = PackedInt32Array(1703938, 458756, 9, 1703943, 458756, 9, 1703948, 786436, 9, 1703977, 131076, 9, 1703982, 786436, 9, 1703960, 1703940, 9, 1572899, 1703940, 9, 1703993, 1114116, 12, 1769529, 1114116, 13, 1835065, 1114116, 14, 1900601, 1114116, 15, 1703994, 1179652, 12, 1769530, 1179652, 13, 1835066, 1179652, 14, 1900602, 1179652, 15, 1703995, 1245188, 12, 1769531, 1245188, 13, 1835067, 1245188, 14, 1900603, 1245188, 15, 1703996, 1310724, 12, 1769532, 1310724, 13, 1835068, 1310724, 14, 1900604, 1310724, 15, 1703997, 1376260, 12, 1769533, 1376260, 13, 1835069, 1376260, 14, 1900605, 1376260, 15, 1703998, 1441796, 12, 1769534, 1441796, 13, 1835070, 1441796, 14, 1900606, 1441796, 15)
-layer_6/name = "Layer5"
+[node name="Breakable Wall Markers" parent="TileMap" parent_id_path=PackedInt32Array(405188612) index="3" unique_id=1691805341]
+z_index = 11
+tile_map_data = PackedByteArray("AAARABsAAAAAAAAAAQASABsAAAAAAAAAAQATABsAAAAAAAAAAQAUABsAAAAAAAAAAQAVABsAAAAAAAAAAQAWABsAAAAAAAAAAQAXABsAAAAAAAAAAQAXABwAAAAAAAAAAQAWABwAAAAAAAAAAQAVABwAAAAAAAAAAQAUABwAAAAAAAAAAQATABwAAAAAAAAAAQASABwAAAAAAAAAAQARABwAAAAAAAAAAQARAB0AAAAAAAAAAQASAB0AAAAAAAAAAQATAB0AAAAAAAAAAQAUAB0AAAAAAAAAAQAVAB0AAAAAAAAAAQAWAB0AAAAAAAAAAQAXAB0AAAAAAAAAAQA=")
+
+[node name="Breakable Wall" parent="TileMap" parent_id_path=PackedInt32Array(405188612) index="4" unique_id=904611561]
+z_index = 10
+tile_map_data = PackedByteArray("AAAXAB0ABAADAAMAAAAXABwABAADAAIAAAAXABsABAADAAEAAAAWAB0ABAAHAAEAAAAWABwABAACAAIAAAAWABsABAAHAAMAAAAVAB0ABAACAAMAAAAVABwABAACAAIAAAAVABsABAAHAAMAAAAUAB0ABAAHAAEAAAAUABwABAACAAIAAAAUABsABAAHAAMAAAATAB0ABAACAAMAAAATABwABAACAAIAAAATABsABAAHAAMAAAASAB0ABAACAAMAAAASABwABAACAAIAAAASABsABAAHAAMAAAARAB0ABAABAAMAAAARABwABAABAAIAAAARABsABAABAAEAAAA=")
 
 [node name="Enemies" parent="." index="4" unique_id=411277872]
 z_index = 1
 
 [node name="Enemy" parent="Enemies" index="0" unique_id=664504772 instance=ExtResource("6_xwqve")]
-position = Vector2(359, 474)
+position = Vector2(357, 474)
 
 [node name="Enemy2" parent="Enemies" index="1" unique_id=2001824550 instance=ExtResource("6_xwqve")]
 position = Vector2(583, 442)
@@ -93,14 +90,42 @@ position = Vector2(237, 465)
 [node name="Campfire" parent="Objects" parent_id_path=PackedInt32Array(483944079) index="3" unique_id=1268968916 instance=ExtResource("10_naytb")]
 position = Vector2(413, 480)
 
+[node name="Projectiles" parent="." index="6" unique_id=1170973925]
+z_index = 2
+
 [node name="RoomTransition" parent="RoomTransitions" parent_id_path=PackedInt32Array(184713210) index="0" unique_id=742750530 instance=ExtResource("6_omcb5")]
 starting_position = Vector2(1600, 512)
 size = 512.0
 target_room_path = "res://scenes/Levels/Level1/room1-2.tscn"
+
+[node name="Loot" parent="." index="8" unique_id=84040762]
+z_index = 3
 
 [node name="PlayerSpawner" parent="PlayerSpawnPoints" parent_id_path=PackedInt32Array(1271754511) index="0" unique_id=1980548916 instance=ExtResource("12_vjwuq")]
 position = Vector2(151, 480)
 
 [node name="PlayerSpawner2" parent="PlayerSpawnPoints" parent_id_path=PackedInt32Array(1271754511) index="1" unique_id=1367329746 instance=ExtResource("12_vjwuq")]
 position = Vector2(1587, 480)
-direction = 0
+direction = -127
+
+[connection signal="area_entered" from="TileMap/Breakable Wall Markers/BreakableWallMarker" to="TileMap/Breakable Wall Markers/BreakableWallMarker" method="_on_area_entered"]
+[connection signal="area_entered" from="TileMap/Breakable Wall Markers/@Area2D@149219" to="TileMap/Breakable Wall Markers/@Area2D@149219" method="_on_area_entered"]
+[connection signal="area_entered" from="TileMap/Breakable Wall Markers/@Area2D@149220" to="TileMap/Breakable Wall Markers/@Area2D@149220" method="_on_area_entered"]
+[connection signal="area_entered" from="TileMap/Breakable Wall Markers/@Area2D@149221" to="TileMap/Breakable Wall Markers/@Area2D@149221" method="_on_area_entered"]
+[connection signal="area_entered" from="TileMap/Breakable Wall Markers/@Area2D@149222" to="TileMap/Breakable Wall Markers/@Area2D@149222" method="_on_area_entered"]
+[connection signal="area_entered" from="TileMap/Breakable Wall Markers/@Area2D@149223" to="TileMap/Breakable Wall Markers/@Area2D@149223" method="_on_area_entered"]
+[connection signal="area_entered" from="TileMap/Breakable Wall Markers/@Area2D@149224" to="TileMap/Breakable Wall Markers/@Area2D@149224" method="_on_area_entered"]
+[connection signal="area_entered" from="TileMap/Breakable Wall Markers/@Area2D@149225" to="TileMap/Breakable Wall Markers/@Area2D@149225" method="_on_area_entered"]
+[connection signal="area_entered" from="TileMap/Breakable Wall Markers/@Area2D@149226" to="TileMap/Breakable Wall Markers/@Area2D@149226" method="_on_area_entered"]
+[connection signal="area_entered" from="TileMap/Breakable Wall Markers/@Area2D@149227" to="TileMap/Breakable Wall Markers/@Area2D@149227" method="_on_area_entered"]
+[connection signal="area_entered" from="TileMap/Breakable Wall Markers/@Area2D@149228" to="TileMap/Breakable Wall Markers/@Area2D@149228" method="_on_area_entered"]
+[connection signal="area_entered" from="TileMap/Breakable Wall Markers/@Area2D@149229" to="TileMap/Breakable Wall Markers/@Area2D@149229" method="_on_area_entered"]
+[connection signal="area_entered" from="TileMap/Breakable Wall Markers/@Area2D@149230" to="TileMap/Breakable Wall Markers/@Area2D@149230" method="_on_area_entered"]
+[connection signal="area_entered" from="TileMap/Breakable Wall Markers/@Area2D@149231" to="TileMap/Breakable Wall Markers/@Area2D@149231" method="_on_area_entered"]
+[connection signal="area_entered" from="TileMap/Breakable Wall Markers/@Area2D@149232" to="TileMap/Breakable Wall Markers/@Area2D@149232" method="_on_area_entered"]
+[connection signal="area_entered" from="TileMap/Breakable Wall Markers/@Area2D@149233" to="TileMap/Breakable Wall Markers/@Area2D@149233" method="_on_area_entered"]
+[connection signal="area_entered" from="TileMap/Breakable Wall Markers/@Area2D@149234" to="TileMap/Breakable Wall Markers/@Area2D@149234" method="_on_area_entered"]
+[connection signal="area_entered" from="TileMap/Breakable Wall Markers/@Area2D@149235" to="TileMap/Breakable Wall Markers/@Area2D@149235" method="_on_area_entered"]
+[connection signal="area_entered" from="TileMap/Breakable Wall Markers/@Area2D@149236" to="TileMap/Breakable Wall Markers/@Area2D@149236" method="_on_area_entered"]
+[connection signal="area_entered" from="TileMap/Breakable Wall Markers/@Area2D@149237" to="TileMap/Breakable Wall Markers/@Area2D@149237" method="_on_area_entered"]
+[connection signal="area_entered" from="TileMap/Breakable Wall Markers/@Area2D@149238" to="TileMap/Breakable Wall Markers/@Area2D@149238" method="_on_area_entered"]

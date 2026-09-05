@@ -20,7 +20,7 @@ size = Vector2(14, 1)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_1285w"]
 particles_animation = true
-particles_anim_h_frames = 4
+particles_anim_h_frames = 6
 particles_anim_v_frames = 1
 particles_anim_loop = false
 

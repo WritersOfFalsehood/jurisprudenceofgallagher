@@ -12,9 +12,8 @@ class_name Room
 var player : Player
 
 @onready var canvas_modulate = $CanvasModulate
-@onready var canvas_modulate_background = $Background/CanvasModulateBackground
 @onready var camera = $MainCamera
-
+@onready var tile_map: Node2D = $TileMap
 @onready var enemies: Node2D = $Enemies
 @onready var objects: Node2D = $Objects
 @onready var projectiles: Node2D = $Projectiles

@@ -21,7 +21,7 @@ func _draw() -> void:
 		var default_font : Font = Control.new().get_theme_font("font")
 		
 		var text : String = str(get_index())
-		var font_size : int = 24
+		var font_size : int = 16
 		var text_color : Color = Color.WHITE
 		
 		# 3. Draw the string

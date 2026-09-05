@@ -93,24 +93,23 @@ func die():
 	get_tree().current_scene.current_room.loot.add_child(loot_dropper)
 	loot_dropper.drop(loot, drop_all_loot_at_once)
 	
-	
-	
 	# Despawn enemy
 	queue_free()
 	
 	# death particle effect
 	var die_effect_node = die_effect.duplicate()
 	var die_particle_node = die_particle.duplicate()
+	
 	var particles_node = get_tree().current_scene.current_room.particles
+	
 	particles_node.add_child(die_effect_node)
 	particles_node.add_child(die_particle_node)
+	
 	die_effect_node.global_position = global_position
 	die_particle_node.global_position = global_position
+	
 	die_effect_node.emitting = true
 	die_particle_node.emitting = true
-	await die_particle_node.finished
-	die_effect_node.queue_free()
-	die_particle_node.queue_free()
 
 
 func _process(delta):
