@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dcnqe5o20r2f6"]
+
+[ext_resource type="Script" uid="uid://umbs4oo5e6w7" path="res://systems/player_properties.gd" id="1_tjw6d"]
+
+[node name="PlayerProperties" type="Node" unique_id=1164474617]
+script = ExtResource("1_tjw6d")

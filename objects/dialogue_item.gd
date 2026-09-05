@@ -16,7 +16,7 @@ signal dialogue_item_deactivated
 func activate():
 	if enabled:
 		active = true
-		DialogueBox.initialise(self)
+		get_tree().current_scene.dialogue_box.initialise(self)
 		
 		dialogue_item_activated.emit()
 	else:

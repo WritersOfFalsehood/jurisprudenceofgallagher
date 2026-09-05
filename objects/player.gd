@@ -1,5 +1,5 @@
 extends CharacterBody2D
-
+class_name Player
 
 @onready var player_sprite = $PlayerSprite
 @onready var collision_shape = $CollisionShape2D
@@ -119,14 +119,7 @@ var combo_count : int
 
 
 func _ready():
-	PlayerProperties.player_object = self
-	
 	default_dash_time = dash_timer.wait_time
-	
-	#inherit direction from player properties in case of screen transitioning
-	if PlayerProperties.player_direction_in_next_scene != 0:
-		direction_x = PlayerProperties.player_direction_in_next_scene
-		PlayerProperties.player_direction_in_next_scene = 0
 	
 	#prepare simulated input dictionary
 	for action in InputMap.get_actions():
@@ -290,7 +283,7 @@ func _physics_process(delta):
 	if simulated_inputs["Up"] or simulated_inputs["Down"]:
 		on_climb_input()
 	
-	if RoomTransitioner.is_transitioning:
+	if get_tree().current_scene.room_transitioner.is_transitioning:
 		can_move = false
 	
 	var input_x_axis = sign(get_axis("Left", "Right"))
@@ -367,8 +360,8 @@ func _physics_process(delta):
 		velocity.x = 0
 	
 	#Keep within level borders
-	if get_tree().current_scene is Room and !RoomTransitioner.is_transitioning:
-		position.x = clampf(position.x, -1, get_tree().current_scene.room_size.x + 1)
+	if get_tree().current_scene.current_room is Room and !get_tree().current_scene.room_transitioner.is_transitioning:
+		position.x = clampf(position.x, -1, get_tree().current_scene.current_room.room_size.x + 1)
 	
 	# Apply knockback
 	if is_getting_knockbacked:
@@ -397,7 +390,7 @@ func _physics_process(delta):
 		can_move = false
 	
 	# Cant move in dialogue
-	if PlayerProperties.is_talking:
+	if Global.is_talking:
 		can_move = false
 		can_attack = false
 	else:
@@ -433,7 +426,8 @@ func _physics_process(delta):
 		if is_on_floor() and !Input.is_action_pressed("Up") and abs(position.y - ladder_lower_bound) < 1:
 			is_climbing = false
 	
-	if RoomTransitioner.is_transitioning:
+	# TRANSITIONING
+	if get_tree().current_scene.room_transitioner.is_transitioning:
 		velocity = current_transition_direction * 50
 	
 	var landing_speed = velocity.y
@@ -497,7 +491,7 @@ func _on_hitbox_area_entered(area):
 					take_damage.emit()
 					area.hit.emit()
 					
-					PlayerProperties.hp -= 1
+					get_tree().current_scene.systems.player_properties.hp -= 1
 					
 					invisibility_frames_timer.start()
 					
@@ -524,8 +518,8 @@ func _on_hitbox_area_entered(area):
 					knockback_velocity = Vector2.RIGHT * knockback_direction * area.knockback_power
 					velocity.y = -KNOCKBACK_UP_SPEED
 					
-					HitstopManager.hitstop(0.12)
-					ScreenShake.screen_shake(15, 25, 5)
+					Global.hitstop(0.12)
+					get_tree().current_scene.systems.screen_shake.screen_shake(15, 25, 5)
 
 
 func _on_hitbox_area_exited(area: Area2D) -> void:

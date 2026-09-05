@@ -35,7 +35,7 @@ func destroy_block():
 	break_wait_timer.start()
 	tilemap.set_cell(1, tilemap.local_to_map(position))
 	block_break_particle.emitting = true
-	ScreenShake.screen_shake(10, 15, 5)
+	get_tree().current_scene.systems.screen_shake.screen_shake(10, 15, 5)
 	await break_wait_timer.timeout
 	for neighbor in neighbors:
 		if neighbor != null:

@@ -25,7 +25,7 @@ func drop(loot : Array[Loot], drop_all_loot_at_once : bool):
 		collectible.spawn_angle = randf_range(DROP_ANGLE_MIN, DROP_ANGLE_MAX)
 		collectible.spawn_speed = randf_range(DROP_SPEED_MIN, DROP_SPEED_MAX)
 		collectible.is_static = false
-		get_tree().current_scene.get_node("Loot").add_child(collectible)
+		get_tree().current_scene.current_room.loot.add_child(collectible)
 		
 		loot_drop_timer.start()
 		if !drop_all_loot_at_once:

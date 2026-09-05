@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 
 var noise_shake_speed: float = 30.0
 var noise_shake_strength: float = 60.0
@@ -18,8 +18,8 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	current_shake_strength = lerpf(current_shake_strength, 0, shake_decay_rate * delta)
-	if get_tree().current_scene is Room:
-		get_tree().current_scene.camera.offset = get_noise_offset(delta)
+	if get_tree().current_scene.current_room is Room:
+		get_tree().current_scene.current_room.camera.offset = get_noise_offset(delta)
 
 
 func screen_shake(shake_strength : float, shake_speed : float, shake_decay : float):
@@ -31,7 +31,7 @@ func screen_shake(shake_strength : float, shake_speed : float, shake_decay : flo
 
 
 func get_noise_offset(delta : float):
-	var camera = get_tree().current_scene.camera
+	var camera = get_tree().current_scene.current_room.camera
 	
 	noise_i += delta * noise_shake_speed
 	# Set the x values of each call to 'get_noise_2d' to a different value

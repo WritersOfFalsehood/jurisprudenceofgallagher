@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://deecmlcntsgfy"
-path="res://.godot/imported/torn.png-05b1e73186eea96f182b2267b7c6272f.ctex"
+uid="uid://cwqebl6ofyui0"
+path="res://.godot/imported/Gallagher Dummy.png-bfbfbdfa7c543ca8901c14cca9dec2ae.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/npcs/torn/torn.png"
-dest_files=["res://.godot/imported/torn.png-05b1e73186eea96f182b2267b7c6272f.ctex"]
+source_file="res://sprites/gallagher/Gallagher Dummy.png"
+dest_files=["res://.godot/imported/Gallagher Dummy.png-bfbfbdfa7c543ca8901c14cca9dec2ae.ctex"]
 
 [params]
 

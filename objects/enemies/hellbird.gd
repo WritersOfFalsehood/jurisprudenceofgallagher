@@ -24,9 +24,7 @@ extends Enemy
 @onready var ai_state_timer = $AIStateTimer
 @onready var attack_cooldown_timer = $AttackCooldownTimer
 
-@onready var projectiles_node = get_tree().current_scene.get_node("Projectiles")
-
-@onready var follow_object = PlayerProperties.player_object
+@onready var follow_object = get_tree().current_scene.player
 
 const FLY_LERP = 0.1
 
@@ -180,6 +178,7 @@ func _physics_process(delta):
 					shot_projectile.global_position = global_position
 					shot_projectile.move_velocity = Vector2.from_angle(shooting_angle) * fireball_speed
 					shot_projectile.move_velocity.x *= direction
+					var projectiles_node = get_tree().current_scene.current_room.projectiles
 					projectiles_node.add_child(shot_projectile)
 					
 					shooting_angle += PI * 1 / 8

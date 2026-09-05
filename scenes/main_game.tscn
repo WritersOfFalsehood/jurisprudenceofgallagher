@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://cwi4036fmxim5"]
+
+[ext_resource type="Script" uid="uid://b6y5hq8r65qub" path="res://scenes/main_game.gd" id="1_ipu61"]
+[ext_resource type="Script" uid="uid://bet3smc6opsuc" path="res://scenes/systems.gd" id="2_2l77h"]
+[ext_resource type="PackedScene" uid="uid://bdlxm5y3ooo2q" path="res://systems/display_manager.tscn" id="2_wi4c7"]
+[ext_resource type="PackedScene" uid="uid://804e3no1osin" path="res://systems/interaction_manager.tscn" id="3_70vka"]
+[ext_resource type="PackedScene" uid="uid://bs4xm68kwapog" path="res://objects/gui/dialogue_box.tscn" id="3_ygxny"]
+[ext_resource type="PackedScene" uid="uid://dcnqe5o20r2f6" path="res://systems/player_properties.tscn" id="4_2l77h"]
+[ext_resource type="PackedScene" uid="uid://co2s6fywuo2xr" path="res://objects/gui/gui.tscn" id="4_wi4c7"]
+[ext_resource type="PackedScene" uid="uid://bdu1kr7cpccnv" path="res://systems/screen_shake.tscn" id="5_2l77h"]
+[ext_resource type="PackedScene" uid="uid://pe0kjk2wiqvg" path="res://objects/gui/room_transitioner.tscn" id="5_70vka"]
+
+[node name="MainGame" type="Node" unique_id=639491997]
+script = ExtResource("1_ipu61")
+
+[node name="Systems" type="Node" parent="." unique_id=909384218]
+unique_name_in_owner = true
+script = ExtResource("2_2l77h")
+
+[node name="DisplayManager" parent="Systems" unique_id=1584397321 instance=ExtResource("2_wi4c7")]
+unique_name_in_owner = true
+
+[node name="InteractionManager" parent="Systems" unique_id=1397138876 instance=ExtResource("3_70vka")]
+unique_name_in_owner = true
+
+[node name="PlayerProperties" parent="Systems" unique_id=529386678 instance=ExtResource("4_2l77h")]
+unique_name_in_owner = true
+
+[node name="ScreenShake" parent="Systems" unique_id=1700435662 instance=ExtResource("5_2l77h")]
+unique_name_in_owner = true
+
+[node name="LevelRoot" type="Node" parent="." unique_id=663376322]
+unique_name_in_owner = true
+
+[node name="DialogueBox" parent="." unique_id=894017950 instance=ExtResource("3_ygxny")]
+unique_name_in_owner = true
+
+[node name="Gui" parent="." unique_id=93544749 instance=ExtResource("4_wi4c7")]
+unique_name_in_owner = true
+
+[node name="RoomTransitioner" parent="." unique_id=464808315 instance=ExtResource("5_70vka")]
+unique_name_in_owner = true

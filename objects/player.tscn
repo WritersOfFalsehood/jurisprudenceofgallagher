@@ -82,7 +82,7 @@ shape = SubResource("RectangleShape2D_ousma")
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="." unique_id=857829229]
 position = Vector2(0, -14)
 sprite_frames = ExtResource("2_4q6fy")
-animation = &"sit"
+animation = &"idle"
 script = ExtResource("7_67bqj")
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=376764610]

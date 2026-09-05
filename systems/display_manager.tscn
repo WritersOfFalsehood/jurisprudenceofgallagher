@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bdlxm5y3ooo2q"]
+
+[ext_resource type="Script" uid="uid://0u6q6w4moaxq" path="res://objects/gui/display_manager.gd" id="1_sulhh"]
+
+[node name="DisplayManager" type="Node" unique_id=1009242923]
+script = ExtResource("1_sulhh")

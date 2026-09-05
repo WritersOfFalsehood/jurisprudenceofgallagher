@@ -2,7 +2,7 @@ extends Event
 
 @export var movements : Array[ForcedPlayerMovement]
 
-@onready var player = PlayerProperties.player_object
+@onready var player = get_tree().current_scene.player
 
 
 func execute_movement(index : int):

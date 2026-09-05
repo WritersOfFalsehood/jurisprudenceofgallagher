@@ -37,7 +37,7 @@ func _ready():
 
 
 func _process(delta):
-	PlayerProperties.is_talking = visible
+	Global.is_talking = visible
 	
 	if visible:
 		portrait_image.custom_minimum_size = Vector2.ONE * 1 if current_dialogue_item.portrait == null else Vector2.ONE * portrait_minimum_size

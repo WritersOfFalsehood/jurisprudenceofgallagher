@@ -6,7 +6,7 @@ extends Enemy
 @export var dash_range : float
 @export var alert_jump_speed : float
 
-@onready var follow_object = PlayerProperties.player_object
+@onready var follow_object = get_tree().current_scene.player
 
 var ai_state : int
 

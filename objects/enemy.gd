@@ -39,7 +39,6 @@ extends CharacterBody2D
 @onready var edge_detector_right = $EdgeDetectorRight
 @onready var sprite = $AnimatedSprite2D
 @onready var flash_effect_timer = $FlashEffectTimer
-@onready var particles_node = get_tree().current_scene.get_node("Particles")
 @onready var hit_effect: GPUParticles2D = $HitEffect
 @onready var hit_particle: GPUParticles2D = $HitParticle
 @onready var die_effect: GPUParticles2D = $DieEffect
@@ -91,7 +90,7 @@ func die():
 	# Handle Drop
 	var loot_dropper = loot_dropper_scene.instantiate()
 	loot_dropper.global_position = global_position
-	get_tree().current_scene.get_node("Loot").add_child(loot_dropper)
+	get_tree().current_scene.current_room.loot.add_child(loot_dropper)
 	loot_dropper.drop(loot, drop_all_loot_at_once)
 	
 	
@@ -102,6 +101,7 @@ func die():
 	# death particle effect
 	var die_effect_node = die_effect.duplicate()
 	var die_particle_node = die_particle.duplicate()
+	var particles_node = get_tree().current_scene.current_room.particles
 	particles_node.add_child(die_effect_node)
 	particles_node.add_child(die_particle_node)
 	die_effect_node.global_position = global_position
@@ -123,7 +123,7 @@ func _process(delta):
 func _physics_process(delta):
 	# enemies only activate after at least 400 blocks from player
 	if !is_activated:
-		if abs((global_position - PlayerProperties.player_object.global_position).length()) <= ACTIVATION_RANGE or always_activated:
+		if abs((global_position - get_tree().current_scene.player.global_position).length()) <= ACTIVATION_RANGE or always_activated:
 			is_activated = true
 			activated.emit()
 		else:
@@ -171,7 +171,7 @@ func get_hit(area):
 	take_damage.emit()
 	area.hit.emit()
 	
-	HitstopManager.hitstop(0.08)
+	Global.hitstop(0.08)
 	
 	hp -= area.damage
 	

@@ -2,7 +2,7 @@ extends Camera2D
 
 @export var use_player_velocity : bool
 
-@onready var following_object = %Gallagher
+var following_object
 
 var LERP = 0.15
 var LOOK_RATIO = 0.3

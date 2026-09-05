@@ -34,13 +34,13 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	hitbox_shape.disabled = !is_collectable
 	
-	if abs((PlayerProperties.player_object.global_position - global_position).length()) <= follow_range and is_collectable:
+	if abs((get_tree().current_scene.player.global_position - global_position).length()) <= follow_range and is_collectable:
 		is_following = true
 	
 	if is_following:
 		freeze = true
 		follow_speed = min(FOLLOW_MAX_SPEED, follow_speed + FOLLOW_ACCELERATION * delta)
-		global_position = global_position.move_toward(PlayerProperties.player_object.global_position, follow_speed * delta)
+		global_position = global_position.move_toward(get_tree().current_scene.player.global_position, follow_speed * delta)
 
 
 func on_spawn():

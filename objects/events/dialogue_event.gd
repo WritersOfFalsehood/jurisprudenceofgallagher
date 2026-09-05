@@ -19,12 +19,12 @@ func _ready():
 
 
 func on_execute():
-	DialogueBox.visible = true
+	get_tree().current_scene.dialogue_box.visible = true
 	dialogue_items[index].activate()
 
 
 func on_finish():
-	DialogueBox.visible = false
+	get_tree().current_scene.dialogue_box.visible = false
 	index = 0
 	
 	if enabled:

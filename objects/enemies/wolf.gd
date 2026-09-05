@@ -7,7 +7,7 @@ extends Enemy
 @export var jump_speed : float
 
 @onready var ai_state_timer: Timer = $AIStateTimer
-@onready var follow_object = PlayerProperties.player_object
+@onready var follow_object = get_tree().current_scene.player
 
 var ai_state : int
 

@@ -53,7 +53,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"default",
-"speed": 12.0
+"speed": 8.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fodb4"]
@@ -71,7 +71,7 @@ metadata/_custom_type_script = "uid://wqti8imt583e"
 position = Vector2(0, -32)
 sprite_frames = SubResource("SpriteFrames_dklp6")
 autoplay = "default"
-frame_progress = 0.95878047
+frame_progress = 0.060564045
 
 [node name="InteractionObject" parent="." unique_id=654532598 instance=ExtResource("2_mtqhr")]
 interaction_mode = 1

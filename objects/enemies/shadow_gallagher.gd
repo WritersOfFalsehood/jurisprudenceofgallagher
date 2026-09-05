@@ -16,7 +16,7 @@ extends Enemy
 @onready var side_attack = $SideAttack
 @onready var up_attack = $UpAttack
 
-@onready var follow_object = PlayerProperties.player_object
+@onready var follow_object = get_tree().current_scene.player
 
 var ai_state : int
 

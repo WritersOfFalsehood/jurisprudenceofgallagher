@@ -2,8 +2,7 @@ extends Node2D
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var spawn_point: Node2D = $SpawnPoint
-@onready var follow_object = PlayerProperties.player_object
-@onready var enemies_node = get_tree().current_scene.get_node("Enemies")
+@onready var follow_object = get_tree().current_scene.player
 
 @export var hiding_object : PackedScene
 @export var look_range : float
@@ -29,7 +28,7 @@ func _process(delta: float) -> void:
 			if global_position.distance_to(follow_object.global_position) < jump_range and !has_jumped:
 				sprite.play("rustle")
 				state = 2
-	
+
 
 
 func jump():
@@ -38,6 +37,7 @@ func jump():
 	spawned_object.global_position = spawn_point.global_position
 	spawned_object.ai_state = 3
 	spawned_object.velocity.y = -jump_speed
+	var enemies_node = get_tree().current_scene.current_room.enemies
 	enemies_node.add_child(spawned_object)
 	sprite.play("jump")
 

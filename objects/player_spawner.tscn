@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dp5mx5sjkexno"]
+
+[ext_resource type="Script" uid="uid://beg34ajwx2t6k" path="res://objects/player_spawner.gd" id="1_xtcy5"]
+[ext_resource type="Texture2D" uid="uid://cwqebl6ofyui0" path="res://sprites/gallagher/Gallagher Dummy.png" id="2_jh8xi"]
+
+[node name="PlayerSpawner" type="Node2D" unique_id=1980548916]
+script = ExtResource("1_xtcy5")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1439863866]
+modulate = Color(1, 1, 1, 0.43529412)
+z_index = 500
+position = Vector2(0, -14)
+texture = ExtResource("2_jh8xi")

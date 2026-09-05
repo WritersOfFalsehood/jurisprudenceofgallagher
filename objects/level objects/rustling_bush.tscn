@@ -122,19 +122,21 @@ animations = [{
 }],
 "loop": 0,
 "name": &"rustle",
-"speed": 10.0
+"speed": 13.0
 }]
 
 [node name="RustlingBush" type="Node2D" unique_id=579675929]
 script = ExtResource("1_sp22y")
 hiding_object = ExtResource("2_xeddr")
-look_range = 160.0
-jump_range = 100.0
+look_range = 96.0
+jump_range = 48.0
 jump_speed = 200.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1770969059]
 sprite_frames = SubResource("SpriteFrames_dklp6")
-animation = &"look"
+animation = &"rustle"
+frame = 7
+frame_progress = 1.0
 centered = false
 
 [node name="SpawnPoint" type="Node2D" parent="." unique_id=1717307289]

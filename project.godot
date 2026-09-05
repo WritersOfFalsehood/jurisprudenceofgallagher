@@ -15,22 +15,14 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="Judisprudenceofgallagher"
-run/main_scene="res://scenes/Levels/Level1/room1-1.tscn"
+run/main_scene="uid://cwi4036fmxim5"
 config/features=PackedStringArray("4.7", "Forward Plus")
 boot_splash/show_image=false
 config/icon="res://icon.svg"
 
 [autoload]
 
-DisplayManager="*res://autoload/display_manager.tscn"
-PlayerProperties="*res://autoload/player_properties.tscn"
-PauseFunc="*res://autoload/pause_func.tscn"
-InteractionManager="*res://autoload/interaction_manager.tscn"
-DialogueBox="*res://objects/gui/dialogue_box.tscn"
-Gui="*uid://co2s6fywuo2xr"
-RoomTransitioner="*uid://pe0kjk2wiqvg"
-HitstopManager="*uid://biprbc5j5oj8x"
-ScreenShake="*uid://bdu1kr7cpccnv"
+Global="*uid://gtum77pne1ne"
 
 [debug]
 
@@ -51,6 +43,11 @@ window/stretch/scale_mode="integer"
 [editor]
 
 movie_writer/movie_file="E:/Random Stuff/Gallagher/Recordings/video.avi"
+
+[gui]
+
+theme/custom="uid://b3lkgta8jritw"
+theme/custom_font="uid://desc5s11kofbo"
 
 [input]
 

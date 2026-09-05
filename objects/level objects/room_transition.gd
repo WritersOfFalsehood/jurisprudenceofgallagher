@@ -3,17 +3,14 @@ extends Node2D
 class_name RoomTransition
 
 
-@export var target_room_path : String
-
 @export_group("Position")
 @export var starting_position : Vector2
 @export_enum("Right", "Left", "Up", "Down") var direction
 @export var size : float		#the "length" of detection in a line 90 degrees counter clockwise from the "direction"
 
-@export_group("Player Position In New Room")
-@export var target_player_position : Vector2
-@export var keep_relative_position : bool
-
+@export_group("Target Room")
+@export var target_room_path : String
+@export var player_spawner_index : int
 
 const DIRECTION_VECTORS = [
 	Vector2.RIGHT,
@@ -22,13 +19,12 @@ const DIRECTION_VECTORS = [
 	Vector2.DOWN
 ]
 
-var player
+@onready var player : Player = get_tree().current_scene.player
+
 var rect : Rect2
 var is_transitioning : bool
 
 
-func _ready():
-	player = PlayerProperties.player_object
 
 
 func _process(delta):
@@ -41,5 +37,6 @@ func _process(delta):
 	var distance_from_origin = normal_vector_rotated.dot(player.global_position) - scalar_vector_rotated.length() * sign(normal_vector_rotated.x + normal_vector_rotated.y)
 	#used to check whether player is in line with the length of the detection line, comes out negative
 	
-	if distance_from_line > 0 and distance_from_origin < 0 and distance_from_origin > -size and !RoomTransitioner.is_transitioning:
-		RoomTransitioner.transition(target_player_position, target_room_path, direction)
+	if distance_from_line > 0 and distance_from_origin < 0 and distance_from_origin > -size and !get_tree().current_scene.room_transitioner.is_transitioning:
+		player.current_transition_direction = DIRECTION_VECTORS[direction]
+		get_tree().current_scene.room_transitioner.transition(target_room_path, player_spawner_index)

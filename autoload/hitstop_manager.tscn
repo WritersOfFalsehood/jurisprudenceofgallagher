@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://biprbc5j5oj8x"]
-
-[ext_resource type="Script" uid="uid://c8mfkj83nuw87" path="res://autoload/hitstop_manager.gd" id="1_ad45w"]
-
-[node name="HitstopManager" type="Node2D" unique_id=1601220801]
-script = ExtResource("1_ad45w")

@@ -9,5 +9,5 @@ func _ready() -> void:
 
 
 func on_collect(area : Area2D):
-	PlayerProperties.gold += value
+	get_tree().current_scene.systems.player_properties.gold += value
 	super.on_collect(area)

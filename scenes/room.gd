@@ -9,14 +9,20 @@ class_name Room
 		room_size = value
 		queue_redraw()
 
-
+var player : Player
 
 @onready var canvas_modulate = $CanvasModulate
 @onready var canvas_modulate_background = $Background/CanvasModulateBackground
 @onready var camera = $MainCamera
-@onready var player = %Gallagher
-@onready var left_edge = $LeftEdge
-@onready var right_edge = $RightEdge
+
+@onready var enemies: Node2D = $Enemies
+@onready var objects: Node2D = $Objects
+@onready var projectiles: Node2D = $Projectiles
+@onready var room_transitions: Node2D = $RoomTransitions
+@onready var loot: Node2D = $Loot
+@onready var particles: Node2D = $Particles
+@onready var player_spawn_points: Node2D = $PlayerSpawnPoints
+
 
 
 func _draw():
@@ -30,12 +36,6 @@ func _draw():
 func _ready():
 	camera.level_top_right.x = room_size.x
 	camera.level_bottom_left.y = room_size.y
-	
-	if PlayerProperties.player_position_in_next_scene.length() != 0:
-		player.global_position = PlayerProperties.player_position_in_next_scene
-		PlayerProperties.player_position_in_next_scene = Vector2.ZERO
-	
-	camera.reset_position()
 	
 
 

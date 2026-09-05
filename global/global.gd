@@ -1,4 +1,6 @@
-extends Node2D
+extends Node
+
+var is_talking : bool
 
 
 func hitstop(duration : float, time_scale : float = 0):

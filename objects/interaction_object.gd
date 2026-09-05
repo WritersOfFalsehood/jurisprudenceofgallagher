@@ -3,6 +3,8 @@ class_name InteractionObject
 extends Node
 
 @onready var interact_sign = $InteractSign
+@onready var interaction_manager = get_tree().current_scene.systems.interaction_manager
+@onready var player = get_tree().current_scene.player
 
 @export_enum("Manuel", "Manuel Only Grounded", "Instant", "Disabled") var interaction_mode : int
 @export var automatically_continue : bool = true
@@ -31,19 +33,19 @@ func _ready():
 
 func _process(delta):
 	interact_sign.position.y = -interact_sign_height
-	interact_sign.visible = InteractionManager.current_interaction_object == self and show_interact_sign and !(interaction_mode == 1 and !PlayerProperties.player_object.is_on_floor()) and PlayerProperties.player_object.can_move
+	interact_sign.visible = interaction_manager.current_interaction_object == self and show_interact_sign and !(interaction_mode == 1 and !player.is_on_floor()) and player.can_move
 
 
 func add_this_interaction(area):
 	if interaction_mode == 0 or interaction_mode == 1:
-		InteractionManager.add_interaction(self)
+		interaction_manager.add_interaction(self)
 	else:
 		execute_event()
 
 
 func remove_this_interaction(area):
 	if interaction_mode == 0 or interaction_mode == 1:
-		InteractionManager.remove_interaction(self)
+		interaction_manager.remove_interaction(self)
 
 
 func execute_event():
